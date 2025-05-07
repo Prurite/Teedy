@@ -19,6 +19,7 @@ docs/*
 
 docs-web/data/*
 data/*
+target/*
 
 #macos
 .DS_Store
