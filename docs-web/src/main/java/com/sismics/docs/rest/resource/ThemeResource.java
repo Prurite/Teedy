@@ -40,15 +40,17 @@ public class ThemeResource extends BaseResource {
 	/**
      * Returns custom CSS stylesheet.
      *
-     * @api {get} /theme/stylesheet Get the CSS stylesheet
-     * @apiName GetThemeStylesheet
-     * @apiGroup Theme
-     * @apiSuccess {String} stylesheet The whole response is the stylesheet
-     * @apiPermission none
-     * @apiVersion 1.5.0
      *
      * @return Response
      */
+/*
+@api {get} /theme/stylesheet Get the CSS stylesheet
+@apiName GetThemeStylesheet
+@apiGroup Theme
+@apiSuccess {String} stylesheet The whole response is the stylesheet
+@apiPermission none
+@apiVersion 1.5.0
+*/
     @GET
     @Path("/stylesheet")
     @Produces("text/css")
@@ -67,17 +69,19 @@ public class ThemeResource extends BaseResource {
     /**
      * Returns the theme configuration.
      *
-     * @api {get} /theme Get the theme configuration
-     * @apiName GetTheme
-     * @apiGroup Theme
-     * @apiSuccess {String} name Application name
-     * @apiSuccess {String} color Main color
-     * @apiSuccess {String} css Custom CSS
-     * @apiPermission none
-     * @apiVersion 1.5.0
      *
      * @return Response
      */
+/*
+@api {get} /theme Get the theme configuration
+@apiName GetTheme
+@apiGroup Theme
+@apiSuccess {String} name Application name
+@apiSuccess {String} color Main color
+@apiSuccess {String} css Custom CSS
+@apiPermission none
+@apiVersion 1.5.0
+*/
     @GET
     public Response get() {
         JsonObject themeConfig = getThemeConfig();
@@ -91,23 +95,25 @@ public class ThemeResource extends BaseResource {
     /**
      * Change the theme configuration.
      *
-     * @api {post} /theme Change the theme configuration
-     * @apiName PostTheme
-     * @apiGroup Theme
-     * @apiParam {String} name Application name
-     * @apiParam {String} color Main color
-     * @apiParam {String} css Custom CSS
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @param color Theme color
      * @param name Application name
      * @param css Custom CSS
      * @return Response
      */
+/*
+@api {post} /theme Change the theme configuration
+@apiName PostTheme
+@apiGroup Theme
+@apiParam {String} name Application name
+@apiParam {String} color Main color
+@apiParam {String} css Custom CSS
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @POST
     public Response theme(@FormParam("color") String color,
               @FormParam("name") String name,
@@ -148,23 +154,25 @@ public class ThemeResource extends BaseResource {
     /**
      * Change a theme image.
      *
-     * @api {put} /theme/image/:type Change a theme image
-     * @apiDescription This resource accepts only multipart/form-data.
-     * @apiName PutThemeImage
-     * @apiGroup Theme
-     * @apiParam {String="logo","background"} type Image type
-     * @apiParam {String} image Image data
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) NoImageProvided An image is required
-     * @apiError (server) CopyError Error copying the image to the theme directory
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @param type Image type
      * @param imageBodyPart Image data
      * @return Response
      */
+/*
+@api {put} /theme/image/:type Change a theme image
+@apiDescription This resource accepts only multipart/form-data.
+@apiName PutThemeImage
+@apiGroup Theme
+@apiParam {String="logo","background"} type Image type
+@apiParam {String} image Image data
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (client) NoImageProvided An image is required
+@apiError (server) CopyError Error copying the image to the theme directory
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @PUT
     @Path("image/{type: logo|background}")
     @Consumes("multipart/form-data")
@@ -194,17 +202,19 @@ public class ThemeResource extends BaseResource {
     /**
      * Get theme images.
      *
-     * @api {get} /theme/image/:type Get a theme image
-     * @apiName GetThemeImage
-     * @apiGroup Theme
-     * @apiParam {String="logo","background"} type Image type
-     * @apiSuccess {String} image The whole response is the image
-     * @apiPermission none
-     * @apiVersion 1.5.0
      *
      * @param type Image type
      * @return Response
      */
+/*
+@api {get} /theme/image/:type Get a theme image
+@apiName GetThemeImage
+@apiGroup Theme
+@apiParam {String="logo","background"} type Image type
+@apiSuccess {String} image The whole response is the image
+@apiPermission none
+@apiVersion 1.5.0
+*/
     @GET
     @Produces("image/*")
     @Path("image/{type: logo|background}")

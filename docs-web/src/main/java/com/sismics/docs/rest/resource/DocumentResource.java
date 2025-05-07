@@ -100,78 +100,80 @@ public class DocumentResource extends BaseResource {
     /**
      * Returns a document.
      *
-     * @api {get} /document/:id Get a document
-     * @apiName GetDocument
-     * @apiGroup Document
-     * @apiParam {String} id Document ID
-     * @apiParam {String} [share] Share ID
-     * @apiParam {Boolean} [files] If true includes files information
-     * @apiSuccess {String} id ID
-     * @apiSuccess {String} title Title
-     * @apiSuccess {String} description Description
-     * @apiSuccess {Number} create_date Create date (timestamp)
-     * @apiSuccess {Number} update_date Update date (timestamp)
-     * @apiSuccess {String} language Language
-     * @apiSuccess {Boolean} shared True if the document is shared
-     * @apiSuccess {Number} file_count Number of files in this document
-     * @apiSuccess {Object[]} tags List of tags
-     * @apiSuccess {String} tags.id ID
-     * @apiSuccess {String} tags.name Name
-     * @apiSuccess {String} tags.color Color
-     * @apiSuccess {String} subject Subject
-     * @apiSuccess {String} identifier Identifier
-     * @apiSuccess {String} publisher Publisher
-     * @apiSuccess {String} format Format
-     * @apiSuccess {String} source Source
-     * @apiSuccess {String} type Type
-     * @apiSuccess {String} coverage Coverage
-     * @apiSuccess {String} rights Rights
-     * @apiSuccess {String} creator Username of the creator
-     * @apiSuccess {String} file_id Main file ID
-     * @apiSuccess {Boolean} writable True if the document is writable by the current user
-     * @apiSuccess {Object[]} acls List of ACL
-     * @apiSuccess {String} acls.id ID
-     * @apiSuccess {String="READ","WRITE"} acls.perm Permission
-     * @apiSuccess {String} acls.name Target name
-     * @apiSuccess {String="USER","GROUP","SHARE"} acls.type Target type
-     * @apiSuccess {Object[]} inherited_acls List of ACL not directly applied to this document
-     * @apiSuccess {String="READ","WRITE"} inherited_acls.perm Permission
-     * @apiSuccess {String} inherited_acls.source_id Source ID
-     * @apiSuccess {String} inherited_acls.source_name Source name
-     * @apiSuccess {String} inherited_acls.source_color The color of the Source
-     * @apiSuccess {String} inherited_acls.id ID
-     * @apiSuccess {String} inherited_acls.name Target name
-     * @apiSuccess {String="USER","GROUP","SHARE"} inherited_acls.type Target type
-     * @apiSuccess {Object[]} contributors List of users having contributed to this document
-     * @apiSuccess {String} contributors.username Username
-     * @apiSuccess {String} contributors.email E-mail
-     * @apiSuccess {Object[]} relations List of document related to this one
-     * @apiSuccess {String} relations.id ID
-     * @apiSuccess {String} relations.title Title
-     * @apiSuccess {String} relations.source True if this document is the source of the relation
-     * @apiSuccess {Object} route_step The current active route step
-     * @apiSuccess {String} route_step.name Route step name
-     * @apiSuccess {String="APPROVE", "VALIDATE"} route_step.type Route step type
-     * @apiSuccess {Boolean} route_step.transitionable True if the route step is actionable by the current user
-     * @apiSuccess {Object[]} files List of files
-     * @apiSuccess {String} files.id ID
-     * @apiSuccess {String} files.name File name
-     * @apiSuccess {String} files.version Zero-based version number
-     * @apiSuccess {String} files.mimetype MIME type
-     * @apiSuccess {String} files.create_date Create date (timestamp)
-     * @apiSuccess {Object[]} metadata List of metadata
-     * @apiSuccess {String} metadata.id ID
-     * @apiSuccess {String} metadata.name Name
-     * @apiSuccess {String="STRING","INTEGER","FLOAT","DATE","BOOLEAN"} metadata.type Type
-     * @apiSuccess {Object} metadata.value Value
-     * @apiError (client) NotFound Document not found
-     * @apiPermission none
-     * @apiVersion 1.5.0
      *
      * @param documentId Document ID
      * @param shareId Share ID
      * @return Response
      */
+/*
+@api {get} /document/:id Get a document
+@apiName GetDocument
+@apiGroup Document
+@apiParam {String} id Document ID
+@apiParam {String} [share] Share ID
+@apiParam {Boolean} [files] If true includes files information
+@apiSuccess {String} id ID
+@apiSuccess {String} title Title
+@apiSuccess {String} description Description
+@apiSuccess {Number} create_date Create date (timestamp)
+@apiSuccess {Number} update_date Update date (timestamp)
+@apiSuccess {String} language Language
+@apiSuccess {Boolean} shared True if the document is shared
+@apiSuccess {Number} file_count Number of files in this document
+@apiSuccess {Object[]} tags List of tags
+@apiSuccess {String} tags.id ID
+@apiSuccess {String} tags.name Name
+@apiSuccess {String} tags.color Color
+@apiSuccess {String} subject Subject
+@apiSuccess {String} identifier Identifier
+@apiSuccess {String} publisher Publisher
+@apiSuccess {String} format Format
+@apiSuccess {String} source Source
+@apiSuccess {String} type Type
+@apiSuccess {String} coverage Coverage
+@apiSuccess {String} rights Rights
+@apiSuccess {String} creator Username of the creator
+@apiSuccess {String} file_id Main file ID
+@apiSuccess {Boolean} writable True if the document is writable by the current user
+@apiSuccess {Object[]} acls List of ACL
+@apiSuccess {String} acls.id ID
+@apiSuccess {String="READ","WRITE"} acls.perm Permission
+@apiSuccess {String} acls.name Target name
+@apiSuccess {String="USER","GROUP","SHARE"} acls.type Target type
+@apiSuccess {Object[]} inherited_acls List of ACL not directly applied to this document
+@apiSuccess {String="READ","WRITE"} inherited_acls.perm Permission
+@apiSuccess {String} inherited_acls.source_id Source ID
+@apiSuccess {String} inherited_acls.source_name Source name
+@apiSuccess {String} inherited_acls.source_color The color of the Source
+@apiSuccess {String} inherited_acls.id ID
+@apiSuccess {String} inherited_acls.name Target name
+@apiSuccess {String="USER","GROUP","SHARE"} inherited_acls.type Target type
+@apiSuccess {Object[]} contributors List of users having contributed to this document
+@apiSuccess {String} contributors.username Username
+@apiSuccess {String} contributors.email E-mail
+@apiSuccess {Object[]} relations List of document related to this one
+@apiSuccess {String} relations.id ID
+@apiSuccess {String} relations.title Title
+@apiSuccess {String} relations.source True if this document is the source of the relation
+@apiSuccess {Object} route_step The current active route step
+@apiSuccess {String} route_step.name Route step name
+@apiSuccess {String="APPROVE", "VALIDATE"} route_step.type Route step type
+@apiSuccess {Boolean} route_step.transitionable True if the route step is actionable by the current user
+@apiSuccess {Object[]} files List of files
+@apiSuccess {String} files.id ID
+@apiSuccess {String} files.name File name
+@apiSuccess {String} files.version Zero-based version number
+@apiSuccess {String} files.mimetype MIME type
+@apiSuccess {String} files.create_date Create date (timestamp)
+@apiSuccess {Object[]} metadata List of metadata
+@apiSuccess {String} metadata.id ID
+@apiSuccess {String} metadata.name Name
+@apiSuccess {String="STRING","INTEGER","FLOAT","DATE","BOOLEAN"} metadata.type Type
+@apiSuccess {Object} metadata.value Value
+@apiError (client) NotFound Document not found
+@apiPermission none
+@apiVersion 1.5.0
+*/
     @GET
     @Path("{id: [a-z0-9\\-]+}")
     public Response get(
@@ -289,19 +291,6 @@ public class DocumentResource extends BaseResource {
     /**
      * Export a document to PDF.
      *
-     * @api {get} /document/:id/pdf Export a document to PDF
-     * @apiName GetDocumentPdf
-     * @apiGroup Document
-     * @apiParam {String} id Document ID
-     * @apiParam {String} share Share ID
-     * @apiParam {Boolean} metadata If true, export metadata
-     * @apiParam {Boolean} fitimagetopage If true, fit the images to pages
-     * @apiParam {Number} margin Margin around the pages, in millimeter
-     * @apiSuccess {String} pdf The whole response is the PDF file
-     * @apiError (client) NotFound Document not found
-     * @apiError (client) ValidationError Validation error
-     * @apiPermission none
-     * @apiVersion 1.5.0
      *
      * @param documentId Document ID
      * @param shareId Share ID
@@ -310,6 +299,21 @@ public class DocumentResource extends BaseResource {
      * @param marginStr Margins
      * @return Response
      */
+/*
+@api {get} /document/:id/pdf Export a document to PDF
+@apiName GetDocumentPdf
+@apiGroup Document
+@apiParam {String} id Document ID
+@apiParam {String} share Share ID
+@apiParam {Boolean} metadata If true, export metadata
+@apiParam {Boolean} fitimagetopage If true, fit the images to pages
+@apiParam {Number} margin Margin around the pages, in millimeter
+@apiSuccess {String} pdf The whole response is the PDF file
+@apiError (client) NotFound Document not found
+@apiError (client) ValidationError Validation error
+@apiPermission none
+@apiVersion 1.5.0
+*/
     @GET
     @Path("{id: [a-z0-9\\-]+}/pdf")
     public Response getPdf(
@@ -359,62 +363,10 @@ public class DocumentResource extends BaseResource {
     /**
      * Returns all documents, if a parameter is considered invalid, the search result will be empty.
      *
-     * @api {get} /document/list Get documents
-     * @apiName GetDocumentList
-     * @apiGroup Document
      *
-     * @apiParam {String} [limit] Total number of documents to return (default is <code>10</code>)
-     * @apiParam {String} [offset] Start at this index (default is <code>0</code>)
-     * @apiParam {Number} [sort_column] Column index to sort on
-     * @apiParam {Boolean} [asc] If <code>true</code> sorts in ascending order
-     * @apiParam {String} [search] Search query (see "Document search syntax" on the top of the page for explanations) when the input is entered by a human.
-     * @apiParam {Boolean} [files] If <code>true</code> includes files information
      *
-     * @apiParam {String} [search[after]] The document must have been created after or at the value moment, accepted format is <code>yyyy-MM-dd</code>
-     * @apiParam {String} [search[before]] The document must have been created before or at the value moment, accepted format is <code>yyyy-MM-dd</code>
-     * @apiParam {String} [search[by]] The document must have been created by the specified creator's username with an exact match, the user must not be deleted
-     * @apiParam {String} [search[full]] Used as a search criteria for all fields including the document's files content, several comma-separated values can be specified and the document must match any of them
-     * @apiParam {String} [search[lang]] The document must be of the specified language (example: <code>en</code>)
-     * @apiParam {String} [search[mime]] The document must be of the specified mime type (example: <code>image/png</code>)
-     * @apiParam {String} [search[simple]] Used as a search criteria for all fields except the document's files content, several comma-separated values can be specified and the document must match any of them
-     * @apiParam {Boolean} [search[shared]] If <code>true</code> the document must be shared, else it is ignored
-     * @apiParam {String} [search[tag]] The document must contain a tag or a child of a tag that starts with the value, case is ignored, several comma-separated values can be specified and the document must match all tag filters
-     * @apiParam {String} [search[nottag]] The document must not contain a tag or a child of a tag that starts with the value, case is ignored, several comma-separated values can be specified and the document must match all tag filters
-     * @apiParam {String} [search[title]] The document's title must be the value, several comma-separated values can be specified and the document must match any of the titles
-     * @apiParam {String} [search[uafter]] The document must have been updated after or at the value moment, accepted format is <code>yyyy-MM-dd</code>
-     * @apiParam {String} [search[ubefore]] The document must have been updated before or at the value moment, accepted format is <code>yyyy-MM-dd</code>
-     * @apiParam {String} [search[workflow]] If the value is <code>me</code> the document must have an active route, for other values the criteria is ignored
      *
-     * @apiSuccess {Number} total Total number of documents
-     * @apiSuccess {Object[]} documents List of documents
-     * @apiSuccess {String} documents.id ID
-     * @apiSuccess {String} documents.highlight Search highlight (for fulltext search)
-     * @apiSuccess {String} documents.file_id Main file ID
-     * @apiSuccess {String} documents.title Title
-     * @apiSuccess {String} documents.description Description
-     * @apiSuccess {Number} documents.create_date Create date (timestamp)
-     * @apiSuccess {Number} documents.update_date Update date (timestamp)
-     * @apiSuccess {String} documents.language Language
-     * @apiSuccess {Boolean} documents.shared True if the document is shared
-     * @apiSuccess {Boolean} documents.active_route True if a route is active on this document
-     * @apiSuccess {Boolean} documents.current_step_name Name of the current route step
-     * @apiSuccess {Number} documents.file_count Number of files in this document
-     * @apiSuccess {Object[]} documents.tags List of tags
-     * @apiSuccess {String} documents.tags.id ID
-     * @apiSuccess {String} documents.tags.name Name
-     * @apiSuccess {String} documents.tags.color Color
-     * @apiSuccess {Object[]} documents.files List of files
-     * @apiSuccess {String} documents.files.id ID
-     * @apiSuccess {String} documents.files.name File name
-     * @apiSuccess {String} documents.files.version Zero-based version number
-     * @apiSuccess {String} documents.files.mimetype MIME type
-     * @apiSuccess {String} documents.files.create_date Create date (timestamp)
-     * @apiSuccess {String[]} suggestions List of search suggestions
      *
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (server) SearchError Error searching in documents
-     * @apiPermission user
-     * @apiVersion 1.5.0
      *
      * @param limit Page limit
      * @param offset Page offset
@@ -424,6 +376,60 @@ public class DocumentResource extends BaseResource {
      * @param files Files list
      * @return Response
      */
+/*
+@api {get} /document/list Get documents
+@apiName GetDocumentList
+@apiGroup Document
+@apiParam {String} [limit] Total number of documents to return (default is <code>10</code>)
+@apiParam {String} [offset] Start at this index (default is <code>0</code>)
+@apiParam {Number} [sort_column] Column index to sort on
+@apiParam {Boolean} [asc] If <code>true</code> sorts in ascending order
+@apiParam {String} [search] Search query (see "Document search syntax" on the top of the page for explanations) when the input is entered by a human.
+@apiParam {Boolean} [files] If <code>true</code> includes files information
+@apiParam {String} [search[after]] The document must have been created after or at the value moment, accepted format is <code>yyyy-MM-dd</code>
+@apiParam {String} [search[before]] The document must have been created before or at the value moment, accepted format is <code>yyyy-MM-dd</code>
+@apiParam {String} [search[by]] The document must have been created by the specified creator's username with an exact match, the user must not be deleted
+@apiParam {String} [search[full]] Used as a search criteria for all fields including the document's files content, several comma-separated values can be specified and the document must match any of them
+@apiParam {String} [search[lang]] The document must be of the specified language (example: <code>en</code>)
+@apiParam {String} [search[mime]] The document must be of the specified mime type (example: <code>image/png</code>)
+@apiParam {String} [search[simple]] Used as a search criteria for all fields except the document's files content, several comma-separated values can be specified and the document must match any of them
+@apiParam {Boolean} [search[shared]] If <code>true</code> the document must be shared, else it is ignored
+@apiParam {String} [search[tag]] The document must contain a tag or a child of a tag that starts with the value, case is ignored, several comma-separated values can be specified and the document must match all tag filters
+@apiParam {String} [search[nottag]] The document must not contain a tag or a child of a tag that starts with the value, case is ignored, several comma-separated values can be specified and the document must match all tag filters
+@apiParam {String} [search[title]] The document's title must be the value, several comma-separated values can be specified and the document must match any of the titles
+@apiParam {String} [search[uafter]] The document must have been updated after or at the value moment, accepted format is <code>yyyy-MM-dd</code>
+@apiParam {String} [search[ubefore]] The document must have been updated before or at the value moment, accepted format is <code>yyyy-MM-dd</code>
+@apiParam {String} [search[workflow]] If the value is <code>me</code> the document must have an active route, for other values the criteria is ignored
+@apiSuccess {Number} total Total number of documents
+@apiSuccess {Object[]} documents List of documents
+@apiSuccess {String} documents.id ID
+@apiSuccess {String} documents.highlight Search highlight (for fulltext search)
+@apiSuccess {String} documents.file_id Main file ID
+@apiSuccess {String} documents.title Title
+@apiSuccess {String} documents.description Description
+@apiSuccess {Number} documents.create_date Create date (timestamp)
+@apiSuccess {Number} documents.update_date Update date (timestamp)
+@apiSuccess {String} documents.language Language
+@apiSuccess {Boolean} documents.shared True if the document is shared
+@apiSuccess {Boolean} documents.active_route True if a route is active on this document
+@apiSuccess {Boolean} documents.current_step_name Name of the current route step
+@apiSuccess {Number} documents.file_count Number of files in this document
+@apiSuccess {Object[]} documents.tags List of tags
+@apiSuccess {String} documents.tags.id ID
+@apiSuccess {String} documents.tags.name Name
+@apiSuccess {String} documents.tags.color Color
+@apiSuccess {Object[]} documents.files List of files
+@apiSuccess {String} documents.files.id ID
+@apiSuccess {String} documents.files.name File name
+@apiSuccess {String} documents.files.version Zero-based version number
+@apiSuccess {String} documents.files.mimetype MIME type
+@apiSuccess {String} documents.files.create_date Create date (timestamp)
+@apiSuccess {String[]} suggestions List of search suggestions
+@apiError (client) ForbiddenError Access denied
+@apiError (server) SearchError Error searching in documents
+@apiPermission user
+@apiVersion 1.5.0
+*/
     @GET
     @Path("list")
     public Response list(
@@ -548,11 +554,6 @@ public class DocumentResource extends BaseResource {
     /**
      * Returns all documents.
      *
-     * @api {post} /document/list Get documents
-     * @apiDescription Get documents exposed as a POST endpoint to allow longer search parameters, see the GET endpoint for the API info
-     * @apiName PostDocumentList
-     * @apiGroup Document
-     * @apiVersion 1.12.0
      *
      * @param limit      Page limit
      * @param offset     Page offset
@@ -562,6 +563,13 @@ public class DocumentResource extends BaseResource {
      * @param files      Files list
      * @return Response
      */
+/*
+@api {post} /document/list Get documents
+@apiDescription Get documents exposed as a POST endpoint to allow longer search parameters, see the GET endpoint for the API info
+@apiName PostDocumentList
+@apiGroup Document
+@apiVersion 1.12.0
+*/
     @POST
     @Path("list")
     public Response listPost(
@@ -613,30 +621,6 @@ public class DocumentResource extends BaseResource {
     /**
      * Creates a new document.
      *
-     * @api {put} /document Add a document
-     * @apiName PutDocument
-     * @apiGroup Document
-     * @apiParam {String} title Title
-     * @apiParam {String} [description] Description
-     * @apiParam {String} [subject] Subject
-     * @apiParam {String} [identifier] Identifier
-     * @apiParam {String} [publisher] Publisher
-     * @apiParam {String} [format] Format
-     * @apiParam {String} [source] Source
-     * @apiParam {String} [type] Type
-     * @apiParam {String} [coverage] Coverage
-     * @apiParam {String} [rights] Rights
-     * @apiParam {String[]} [tags] List of tags ID
-     * @apiParam {String[]} [relations] List of related documents ID
-     * @apiParam {String[]} [metadata_id] List of metadata ID
-     * @apiParam {String[]} [metadata_value] List of metadata values
-     * @apiParam {String} language Language
-     * @apiParam {Number} [create_date] Create date (timestamp)
-     * @apiSuccess {String} id Document ID
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiPermission user
-     * @apiVersion 1.5.0
      *
      * @param title Title
      * @param description Description
@@ -656,6 +640,32 @@ public class DocumentResource extends BaseResource {
      * @param createDateStr Creation date
      * @return Response
      */
+/*
+@api {put} /document Add a document
+@apiName PutDocument
+@apiGroup Document
+@apiParam {String} title Title
+@apiParam {String} [description] Description
+@apiParam {String} [subject] Subject
+@apiParam {String} [identifier] Identifier
+@apiParam {String} [publisher] Publisher
+@apiParam {String} [format] Format
+@apiParam {String} [source] Source
+@apiParam {String} [type] Type
+@apiParam {String} [coverage] Coverage
+@apiParam {String} [rights] Rights
+@apiParam {String[]} [tags] List of tags ID
+@apiParam {String[]} [relations] List of related documents ID
+@apiParam {String[]} [metadata_id] List of metadata ID
+@apiParam {String[]} [metadata_value] List of metadata values
+@apiParam {String} language Language
+@apiParam {Number} [create_date] Create date (timestamp)
+@apiSuccess {String} id Document ID
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiPermission user
+@apiVersion 1.5.0
+*/
     @PUT
     public Response add(
             @FormParam("title") String title,
@@ -745,37 +755,39 @@ public class DocumentResource extends BaseResource {
     /**
      * Updates the document.
      *
-     * @api {post} /document/:id Update a document
-     * @apiName PostDocument
-     * @apiGroup Document
-     * @apiParam {String} id ID
-     * @apiParam {String} title Title
-     * @apiParam {String} [description] Description
-     * @apiParam {String} [subject] Subject
-     * @apiParam {String} [identifier] Identifier
-     * @apiParam {String} [publisher] Publisher
-     * @apiParam {String} [format] Format
-     * @apiParam {String} [source] Source
-     * @apiParam {String} [type] Type
-     * @apiParam {String} [coverage] Coverage
-     * @apiParam {String} [rights] Rights
-     * @apiParam {String[]} [tags] List of tags ID
-     * @apiParam {String[]} [relations] List of related documents ID
-     * @apiParam {String[]} [metadata_id] List of metadata ID
-     * @apiParam {String[]} [metadata_value] List of metadata values
-     * @apiParam {String} [language] Language
-     * @apiParam {Number} [create_date] Create date (timestamp)
-     * @apiSuccess {String} id Document ID
-     * @apiError (client) ForbiddenError Access denied or document not writable
-     * @apiError (client) ValidationError Validation error
-     * @apiError (client) NotFound Document not found
-     * @apiPermission user
-     * @apiVersion 1.5.0
      *
      * @param title Title
      * @param description Description
      * @return Response
      */
+/*
+@api {post} /document/:id Update a document
+@apiName PostDocument
+@apiGroup Document
+@apiParam {String} id ID
+@apiParam {String} title Title
+@apiParam {String} [description] Description
+@apiParam {String} [subject] Subject
+@apiParam {String} [identifier] Identifier
+@apiParam {String} [publisher] Publisher
+@apiParam {String} [format] Format
+@apiParam {String} [source] Source
+@apiParam {String} [type] Type
+@apiParam {String} [coverage] Coverage
+@apiParam {String} [rights] Rights
+@apiParam {String[]} [tags] List of tags ID
+@apiParam {String[]} [relations] List of related documents ID
+@apiParam {String[]} [metadata_id] List of metadata ID
+@apiParam {String[]} [metadata_value] List of metadata values
+@apiParam {String} [language] Language
+@apiParam {Number} [create_date] Create date (timestamp)
+@apiSuccess {String} id Document ID
+@apiError (client) ForbiddenError Access denied or document not writable
+@apiError (client) ValidationError Validation error
+@apiError (client) NotFound Document not found
+@apiPermission user
+@apiVersion 1.5.0
+*/
     @POST
     @Path("{id: [a-z0-9\\-]+}")
     public Response update(
@@ -877,22 +889,24 @@ public class DocumentResource extends BaseResource {
     /**
      * Import a new document from an EML file.
      *
-     * @api {put} /document/eml Import a new document from an EML file
-     * @apiName PutDocumentEml
-     * @apiGroup Document
-     * @apiParam {String} file File data
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiError (server) StreamError Error reading the input file
-     * @apiError (server) ErrorGuessMime Error guessing mime type
-     * @apiError (client) QuotaReached Quota limit reached
-     * @apiError (server) FileError Error adding a file
-     * @apiPermission user
-     * @apiVersion 1.5.0
      *
      * @param fileBodyPart File to import
      * @return Response
      */
+/*
+@api {put} /document/eml Import a new document from an EML file
+@apiName PutDocumentEml
+@apiGroup Document
+@apiParam {String} file File data
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiError (server) StreamError Error reading the input file
+@apiError (server) ErrorGuessMime Error guessing mime type
+@apiError (client) QuotaReached Quota limit reached
+@apiError (server) FileError Error adding a file
+@apiPermission user
+@apiVersion 1.5.0
+*/
     @PUT
     @Path("eml")
     @Consumes("multipart/form-data")
@@ -974,19 +988,21 @@ public class DocumentResource extends BaseResource {
     /**
      * Deletes a document.
      *
-     * @api {delete} /document/:id Delete a document
-     * @apiName DeleteDocument
-     * @apiGroup Document
-     * @apiParam {String} id ID
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) NotFound Document not found
-     * @apiPermission user
-     * @apiVersion 1.5.0
      *
      * @param id Document ID
      * @return Response
      */
+/*
+@api {delete} /document/:id Delete a document
+@apiName DeleteDocument
+@apiGroup Document
+@apiParam {String} id ID
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (client) NotFound Document not found
+@apiPermission user
+@apiVersion 1.5.0
+*/
     @DELETE
     @Path("{id: [a-z0-9\\-]+}")
     public Response delete(

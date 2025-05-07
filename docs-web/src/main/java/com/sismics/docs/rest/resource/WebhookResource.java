@@ -27,19 +27,21 @@ public class WebhookResource extends BaseResource {
     /**
      * Returns the list of all webhooks.
      *
-     * @api {get} /webhook Get webhooks
-     * @apiName GetWebhook
-     * @apiGroup Webhook
-     * @apiSuccess {Object[]} webhooks List of webhooks
-     * @apiSuccess {String} webhooks.id ID
-     * @apiSuccess {String} webhooks.event Event
-     * @apiSuccess {String} webhooks.url URL
-     * @apiError (client) ForbiddenError Access denied
-     * @apiPermission admin
-     * @apiVersion 1.6.0
      *
      * @return Response
      */
+/*
+@api {get} /webhook Get webhooks
+@apiName GetWebhook
+@apiGroup Webhook
+@apiSuccess {Object[]} webhooks List of webhooks
+@apiSuccess {String} webhooks.id ID
+@apiSuccess {String} webhooks.event Event
+@apiSuccess {String} webhooks.url URL
+@apiError (client) ForbiddenError Access denied
+@apiPermission admin
+@apiVersion 1.6.0
+*/
     @GET
     public Response list(@QueryParam("document") String documentId) {
         if (!authenticate()) {
@@ -66,20 +68,22 @@ public class WebhookResource extends BaseResource {
     /**
      * Add a webhook.
      *
-     * @api {put} /webhook Add a webhook
-     * @apiDescription Each time the specified event is raised, the webhook URL will be POST-ed with the following JSON payload: {"event": "Event name", "id": "ID of the document or file"}
-     * @apiName PutWebhook
-     * @apiGroup Webhook
-     * @apiParam {String="DOCUMENT_CREATED","DOCUMENT_UPDATED","DOCUMENT_DELETED","FILE_CREATED","FILE_UPDATED","FILE_DELETED"} event Event
-     * @apiParam {String} url URL
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiPermission admin
-     * @apiVersion 1.6.0
      *
      * @return Response
      */
+/*
+@api {put} /webhook Add a webhook
+@apiDescription Each time the specified event is raised, the webhook URL will be POST-ed with the following JSON payload: {"event": "Event name", "id": "ID of the document or file"}
+@apiName PutWebhook
+@apiGroup Webhook
+@apiParam {String="DOCUMENT_CREATED","DOCUMENT_UPDATED","DOCUMENT_DELETED","FILE_CREATED","FILE_UPDATED","FILE_DELETED"} event Event
+@apiParam {String} url URL
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiPermission admin
+@apiVersion 1.6.0
+*/
     @PUT
     public Response add(@FormParam("event") String eventStr,
                         @FormParam("url") String url) {
@@ -107,18 +111,20 @@ public class WebhookResource extends BaseResource {
     /**
      * Delete a webhook.
      *
-     * @api {delete} /webhook/:id Delete a webhook
-     * @apiName DeleteWebhook
-     * @apiGroup Webhook
-     * @apiParam {String} id Webhook ID
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) NotFound Webhook not found
-     * @apiPermission admin
-     * @apiVersion 1.6.0
      *
      * @return Response
      */
+/*
+@api {delete} /webhook/:id Delete a webhook
+@apiName DeleteWebhook
+@apiGroup Webhook
+@apiParam {String} id Webhook ID
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (client) NotFound Webhook not found
+@apiPermission admin
+@apiVersion 1.6.0
+*/
     @DELETE
     @Path("{id: [a-z0-9\\-]+}")
     public Response delete(@PathParam("id") String id) {

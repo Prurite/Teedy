@@ -27,27 +27,37 @@ import java.util.Set;
 @Produces(MediaType.APPLICATION_JSON)
 public abstract class BaseResource {
     /**
-     * @apiDefine admin Admin
      * Only the admin user can access this resource
      */
+/*
+@apiDefine admin Admin
+*/
 
     /**
-     * @apiDefine user Authenticated user
      * All authenticated users can access this resource
      */
+/*
+@apiDefine user Authenticated user
+*/
 
     /**
-     * @apiDefine none Anonymous user
      * This resource can be accessed anonymously
      */
+/*
+@apiDefine none Anonymous user
+*/
 
     /**
-     * @apiDefine server Server error
      */
+/*
+@apiDefine server Server error
+*/
 
     /**
-     * @apiDefine client Client error
      */
+/*
+@apiDefine client Client error
+*/
 
     /**
      * Injects the HTTP request.

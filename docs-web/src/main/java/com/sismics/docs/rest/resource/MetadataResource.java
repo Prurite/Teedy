@@ -27,21 +27,23 @@ public class MetadataResource extends BaseResource {
     /**
      * Returns the list of all configured metadata.
      *
-     * @api {get} /metadata Get configured metadata
-     * @apiName GetMetadata
-     * @apiGroup Metadata
-     * @apiParam {Number} sort_column Column index to sort on
-     * @apiParam {Boolean} asc If true, sort in ascending order
-     * @apiSuccess {Object[]} metadata List of metadata
-     * @apiSuccess {String} metadata.id ID
-     * @apiSuccess {String} metadata.name Name
-     * @apiSuccess {String="STRING","INTEGER","FLOAT","DATE","BOOLEAN"} metadata.type Type
-     * @apiError (client) ForbiddenError Access denied
-     * @apiPermission user
-     * @apiVersion 1.7.0
      *
      * @return Response
      */
+/*
+@api {get} /metadata Get configured metadata
+@apiName GetMetadata
+@apiGroup Metadata
+@apiParam {Number} sort_column Column index to sort on
+@apiParam {Boolean} asc If true, sort in ascending order
+@apiSuccess {Object[]} metadata List of metadata
+@apiSuccess {String} metadata.id ID
+@apiSuccess {String} metadata.name Name
+@apiSuccess {String="STRING","INTEGER","FLOAT","DATE","BOOLEAN"} metadata.type Type
+@apiError (client) ForbiddenError Access denied
+@apiPermission user
+@apiVersion 1.7.0
+*/
     @GET
     public Response list(
             @QueryParam("sort_column") Integer sortColumn,
@@ -70,23 +72,25 @@ public class MetadataResource extends BaseResource {
     /**
      * Add a metadata.
      *
-     * @api {put} /metadata Add a custom metadata
-     * @apiName PutMetadata
-     * @apiGroup Metadata
-     * @apiParam {String{1..50}} name Name
-     * @apiParam {String="STRING","INTEGER","FLOAT","DATE","BOOLEAN"} type Type
-     * @apiSuccess {String} id ID
-     * @apiSuccess {String} name Name
-     * @apiSuccess {String="STRING","INTEGER","FLOAT","DATE","BOOLEAN"} type Type
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiPermission admin
-     * @apiVersion 1.7.0
      *
      * @param name Name
      * @param typeStr Type
      * @return Response
      */
+/*
+@api {put} /metadata Add a custom metadata
+@apiName PutMetadata
+@apiGroup Metadata
+@apiParam {String{1..50}} name Name
+@apiParam {String="STRING","INTEGER","FLOAT","DATE","BOOLEAN"} type Type
+@apiSuccess {String} id ID
+@apiSuccess {String} name Name
+@apiSuccess {String="STRING","INTEGER","FLOAT","DATE","BOOLEAN"} type Type
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiPermission admin
+@apiVersion 1.7.0
+*/
     @PUT
     public Response add(@FormParam("name") String name,
                         @FormParam("type") String typeStr) {
@@ -117,24 +121,26 @@ public class MetadataResource extends BaseResource {
     /**
      * Update a metadata.
      *
-     * @api {post} /metadata/:id Update a custom metadata
-     * @apiName PostMetadataId
-     * @apiGroup Metadata
-     * @apiParam {String} id Metadata ID
-     * @apiParam {String{1..50}} name Name
-     * @apiSuccess {String} id ID
-     * @apiSuccess {String} name Name
-     * @apiSuccess {String="STRING","INTEGER","FLOAT","DATE","BOOLEAN"} type Type
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiError (client) NotFound Metadata not found
-     * @apiPermission admin
-     * @apiVersion 1.7.0
      *
      * @param id ID
      * @param name Name
      * @return Response
      */
+/*
+@api {post} /metadata/:id Update a custom metadata
+@apiName PostMetadataId
+@apiGroup Metadata
+@apiParam {String} id Metadata ID
+@apiParam {String{1..50}} name Name
+@apiSuccess {String} id ID
+@apiSuccess {String} name Name
+@apiSuccess {String="STRING","INTEGER","FLOAT","DATE","BOOLEAN"} type Type
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiError (client) NotFound Metadata not found
+@apiPermission admin
+@apiVersion 1.7.0
+*/
     @POST
     @Path("{id: [a-z0-9\\-]+}")
     public Response update(@PathParam("id") String id,
@@ -169,19 +175,21 @@ public class MetadataResource extends BaseResource {
     /**
      * Delete a metadata.
      *
-     * @api {delete} /metadata/:id Delete a custom metadata
-     * @apiName DeleteMetadataId
-     * @apiGroup Metadata
-     * @apiParam {String} id Metadata ID
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) NotFound Metadata not found
-     * @apiPermission admin
-     * @apiVersion 1.7.0
      *
      * @param id ID
      * @return Response
      */
+/*
+@api {delete} /metadata/:id Delete a custom metadata
+@apiName DeleteMetadataId
+@apiGroup Metadata
+@apiParam {String} id Metadata ID
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (client) NotFound Metadata not found
+@apiPermission admin
+@apiVersion 1.7.0
+*/
     @DELETE
     @Path("{id: [a-z0-9\\-]+}")
     public Response delete(@PathParam("id") String id) {

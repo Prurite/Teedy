@@ -34,21 +34,23 @@ public class RouteResource extends BaseResource {
     /**
      * Start a route on a document.
      *
-     * @api {post} /route/start Start a route on a document
-     * @apiName PostRouteStart
-     * @apiGroup Route
-     * @apiParam {String} routeModelId Route model ID
-     * @apiParam {String} documentId Document ID
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) InvalidRouteModel Invalid route model
-     * @apiError (client) RunningRoute A running route already exists on this document
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) NotFound Route model or document not found
-     * @apiPermission user
-     * @apiVersion 1.5.0
      *
      * @return Response
      */
+/*
+@api {post} /route/start Start a route on a document
+@apiName PostRouteStart
+@apiGroup Route
+@apiParam {String} routeModelId Route model ID
+@apiParam {String} documentId Document ID
+@apiSuccess {String} status Status OK
+@apiError (client) InvalidRouteModel Invalid route model
+@apiError (client) RunningRoute A running route already exists on this document
+@apiError (client) ForbiddenError Access denied
+@apiError (client) NotFound Route model or document not found
+@apiPermission user
+@apiVersion 1.5.0
+*/
     @POST
     @Path("start")
     public Response start(@FormParam("routeModelId") String routeModelId,
@@ -132,20 +134,22 @@ public class RouteResource extends BaseResource {
     /**
      * Validate the current step of a route.
      *
-     * @api {post} /route/validate Validate the current step of a route
-     * @apiName PostRouteValidate
-     * @apiGroup Route
-     * @apiParam {String} documentId Document ID
-     * @apiParam {String} transition Route step transition
-     * @apiParam {String} comment Route step comment
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) NotFound Document or route not found
-     * @apiPermission user
-     * @apiVersion 1.5.0
      *
      * @return Response
      */
+/*
+@api {post} /route/validate Validate the current step of a route
+@apiName PostRouteValidate
+@apiGroup Route
+@apiParam {String} documentId Document ID
+@apiParam {String} transition Route step transition
+@apiParam {String} comment Route step comment
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (client) NotFound Document or route not found
+@apiPermission user
+@apiVersion 1.5.0
+*/
     @POST
     @Path("validate")
     public Response validate(@FormParam("documentId") String documentId,
@@ -226,31 +230,33 @@ public class RouteResource extends BaseResource {
     /**
      * Returns the routes on a document.
      *
-     * @api {get} /route Get the routes on a document
-     * @apiName GetRoutes
-     * @apiGroup Route
-     * @apiParam {String} documentId Document ID
-     * @apiSuccess {Object[]} routes List of routes
-     * @apiSuccess {String} routes.name Name
-     * @apiSuccess {Number} routes.create_date Create date (timestamp)
-     * @apiSuccess {Object[]} routes.steps Route steps
-     * @apiSuccess {String} routes.steps.name Route step name
-     * @apiSuccess {String="APPROVE", "VALIDATE"} routes.steps.type Route step type
-     * @apiSuccess {String} routes.steps.comment Route step comment
-     * @apiSuccess {Number} routes.steps.end_date Route step end date (timestamp)
-     * @apiSuccess {String="APPROVED","REJECTED","VALIDATED"} routes.steps.transition Route step transition
-     * @apiSuccess {Object} routes.steps.validator_username Validator username
-     * @apiSuccess {Object} routes.steps.target Route step target
-     * @apiSuccess {String} routes.steps.target.id Route step target ID
-     * @apiSuccess {String} routes.steps.target.name Route step target name
-     * @apiSuccess {String="USER","GROUP"} routes.steps.target.type Route step target type
-     * @apiError (client) NotFound Document not found
-     * @apiPermission none
-     * @apiVersion 1.5.0
      *
      * @param documentId Document ID
      * @return Response
      */
+/*
+@api {get} /route Get the routes on a document
+@apiName GetRoutes
+@apiGroup Route
+@apiParam {String} documentId Document ID
+@apiSuccess {Object[]} routes List of routes
+@apiSuccess {String} routes.name Name
+@apiSuccess {Number} routes.create_date Create date (timestamp)
+@apiSuccess {Object[]} routes.steps Route steps
+@apiSuccess {String} routes.steps.name Route step name
+@apiSuccess {String="APPROVE", "VALIDATE"} routes.steps.type Route step type
+@apiSuccess {String} routes.steps.comment Route step comment
+@apiSuccess {Number} routes.steps.end_date Route step end date (timestamp)
+@apiSuccess {String="APPROVED","REJECTED","VALIDATED"} routes.steps.transition Route step transition
+@apiSuccess {Object} routes.steps.validator_username Validator username
+@apiSuccess {Object} routes.steps.target Route step target
+@apiSuccess {String} routes.steps.target.id Route step target ID
+@apiSuccess {String} routes.steps.target.name Route step target name
+@apiSuccess {String="USER","GROUP"} routes.steps.target.type Route step target type
+@apiError (client) NotFound Document not found
+@apiPermission none
+@apiVersion 1.5.0
+*/
     @GET
     public Response get(@QueryParam("documentId") String documentId) {
         if (!authenticate()) {
@@ -292,18 +298,20 @@ public class RouteResource extends BaseResource {
     /**
      * Cancel a route.
      *
-     * @api {delete} /route Cancel a route
-     * @apiName DeleteRoute
-     * @apiGroup Route
-     * @apiParam {String} documentId Document ID
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) NotFound Document or route not found
-     * @apiPermission user
-     * @apiVersion 1.5.0
      *
      * @return Response
      */
+/*
+@api {delete} /route Cancel a route
+@apiName DeleteRoute
+@apiGroup Route
+@apiParam {String} documentId Document ID
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (client) NotFound Document or route not found
+@apiPermission user
+@apiVersion 1.5.0
+*/
     @DELETE
     public Response delete(@QueryParam("documentId") String documentId) {
         if (!authenticate()) {

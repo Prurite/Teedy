@@ -23,22 +23,24 @@ public class VocabularyResource extends BaseResource {
     /**
      * Get a vocabulary.
      *
-     * @api {get} /vocabulary/:name Get a vocabulary
-     * @apiName GetVocabularyName
-     * @apiGroup Vocabulary
-     * @apiParam {String} name Vocabulary name
-     * @apiSuccess {Object[]} entries List of vocabulary entries
-     * @apiSuccess {String} entries.id ID
-     * @apiSuccess {String} entries.name Name
-     * @apiSuccess {String} entries.value Value
-     * @apiSuccess {Number} entries.order Order
-     * @apiError (client) ForbiddenError Access denied
-     * @apiPermission user
-     * @apiVersion 1.5.0
      *
      * @param name Name
      * @return Response
      */
+/*
+@api {get} /vocabulary/:name Get a vocabulary
+@apiName GetVocabularyName
+@apiGroup Vocabulary
+@apiParam {String} name Vocabulary name
+@apiSuccess {Object[]} entries List of vocabulary entries
+@apiSuccess {String} entries.id ID
+@apiSuccess {String} entries.name Name
+@apiSuccess {String} entries.value Value
+@apiSuccess {Number} entries.order Order
+@apiError (client) ForbiddenError Access denied
+@apiPermission user
+@apiVersion 1.5.0
+*/
     @GET
     @Path("{name: [a-z0-9\\-]+}")
     public Response get(@PathParam("name") String name) {
@@ -67,26 +69,28 @@ public class VocabularyResource extends BaseResource {
     /**
      * Add a vocabulary entry.
      *
-     * @api {put} /vocabulary Add a vocabulary entry
-     * @apiName PutVocabulary
-     * @apiGroup Vocabulary
-     * @apiParam {String{1..50}} name Vocabulary name
-     * @apiParam {String{1..500}} value Entry value
-     * @apiParam {Number} order Entry order
-     * @apiSuccess {String} id ID
-     * @apiSuccess {String} name Name
-     * @apiSuccess {String} value Value
-     * @apiSuccess {Number} order Order
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @param name Name
      * @param value Value
      * @param orderStr Order
      * @return Response
      */
+/*
+@api {put} /vocabulary Add a vocabulary entry
+@apiName PutVocabulary
+@apiGroup Vocabulary
+@apiParam {String{1..50}} name Vocabulary name
+@apiParam {String{1..500}} value Entry value
+@apiParam {Number} order Entry order
+@apiSuccess {String} id ID
+@apiSuccess {String} name Name
+@apiSuccess {String} value Value
+@apiSuccess {Number} order Order
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @PUT
     public Response add(@FormParam("name") String name,
             @FormParam("value") String value,
@@ -122,22 +126,6 @@ public class VocabularyResource extends BaseResource {
     /**
      * Update a vocabulary entry.
      *
-     * @api {post} /vocabulary/:id Update a vocabulary entry
-     * @apiName PostVocabularyId
-     * @apiGroup Vocabulary
-     * @apiParam {String} id Entry ID
-     * @apiParam {String{1..50}} name Vocabulary name
-     * @apiParam {String{1..500}} value Entry value
-     * @apiParam {Number} order Entry order
-     * @apiSuccess {String} id ID
-     * @apiSuccess {String} name Name
-     * @apiSuccess {String} value Value
-     * @apiSuccess {Number} order Order
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiError (client) NotFound Vocabulary not found
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @param id ID
      * @param name Name
@@ -145,6 +133,24 @@ public class VocabularyResource extends BaseResource {
      * @param orderStr Order
      * @return Response
      */
+/*
+@api {post} /vocabulary/:id Update a vocabulary entry
+@apiName PostVocabularyId
+@apiGroup Vocabulary
+@apiParam {String} id Entry ID
+@apiParam {String{1..50}} name Vocabulary name
+@apiParam {String{1..500}} value Entry value
+@apiParam {Number} order Entry order
+@apiSuccess {String} id ID
+@apiSuccess {String} name Name
+@apiSuccess {String} value Value
+@apiSuccess {Number} order Order
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiError (client) NotFound Vocabulary not found
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @POST
     @Path("{id: [a-z0-9\\-]+}")
     public Response update(@PathParam("id") String id,
@@ -198,19 +204,21 @@ public class VocabularyResource extends BaseResource {
     /**
      * Delete a vocabulary entry.
      *
-     * @api {delete} /vocabulary/:id Delete a vocabulary entry
-     * @apiName DeleteVocabularyId
-     * @apiGroup Vocabulary
-     * @apiParam {String} id Entry ID
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) NotFound Vocabulary not found
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @param id ID
      * @return Response
      */
+/*
+@api {delete} /vocabulary/:id Delete a vocabulary entry
+@apiName DeleteVocabularyId
+@apiGroup Vocabulary
+@apiParam {String} id Entry ID
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (client) NotFound Vocabulary not found
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @DELETE
     @Path("{id: [a-z0-9\\-]+}")
     public Response delete(@PathParam("id") String id) {

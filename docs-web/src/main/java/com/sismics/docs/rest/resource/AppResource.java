@@ -60,25 +60,27 @@ public class AppResource extends BaseResource {
     /**
      * Returns information about the application.
      *
-     * @api {get} /app Get application information
-     * @apiName GetApp
-     * @apiGroup App
-     * @apiSuccess {String} current_version API current version
-     * @apiSuccess {String} min_version API minimum version
-     * @apiSuccess {Boolean} guest_login True if guest login is enabled
-     * @apiSuccess {String} default_language Default platform language
-     * @apiSuccess {Number} queued_tasks Number of queued tasks waiting to be processed
-     * @apiSuccess {String} total_memory Allocated JVM memory (in bytes)
-     * @apiSuccess {String} free_memory Free JVM memory (in bytes)
-     * @apiSuccess {String} document_count Number of documents
-     * @apiSuccess {String} active_user_count Number of active users
-     * @apiSuccess {String} global_storage_current Global storage currently used (in bytes)
-     * @apiSuccess {String} global_storage_quota Maximum global storage (in bytes)
-     * @apiPermission none
-     * @apiVersion 1.5.0
      *
      * @return Response
      */
+/*
+@api {get} /app Get application information
+@apiName GetApp
+@apiGroup App
+@apiSuccess {String} current_version API current version
+@apiSuccess {String} min_version API minimum version
+@apiSuccess {Boolean} guest_login True if guest login is enabled
+@apiSuccess {String} default_language Default platform language
+@apiSuccess {Number} queued_tasks Number of queued tasks waiting to be processed
+@apiSuccess {String} total_memory Allocated JVM memory (in bytes)
+@apiSuccess {String} free_memory Free JVM memory (in bytes)
+@apiSuccess {String} document_count Number of documents
+@apiSuccess {String} active_user_count Number of active users
+@apiSuccess {String} global_storage_current Global storage currently used (in bytes)
+@apiSuccess {String} global_storage_quota Maximum global storage (in bytes)
+@apiPermission none
+@apiVersion 1.5.0
+*/
     @GET
     public Response info() {
         ResourceBundle configBundle = ConfigUtil.getConfigBundle();
@@ -117,17 +119,19 @@ public class AppResource extends BaseResource {
     /**
      * Enable/disable guest login.
      *
-     * @api {post} /app/guest_login Enable/disable guest login
-     * @apiName PostAppGuestLogin
-     * @apiGroup App
-     * @apiParam {Boolean} enabled If true, enable guest login
-     * @apiError (client) ForbiddenError Access denied
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @param enabled If true, enable guest login
      * @return Response
      */
+/*
+@api {post} /app/guest_login Enable/disable guest login
+@apiName PostAppGuestLogin
+@apiGroup App
+@apiParam {Boolean} enabled If true, enable guest login
+@apiError (client) ForbiddenError Access denied
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @POST
     @Path("guest_login")
     public Response guestLogin(@FormParam("enabled") Boolean enabled) {
@@ -145,17 +149,19 @@ public class AppResource extends BaseResource {
     /**
      * Enable/disable OCR.
      *
-     * @api {post} /app/ocr Enable/disable OCR
-     * @apiName PostAppOcr
-     * @apiGroup App
-     * @apiParam {Boolean} enabled If true, enable OCR
-     * @apiError (client) ForbiddenError Access denied
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @param enabled If true, enable OCR
      * @return Response
      */
+/*
+@api {post} /app/ocr Enable/disable OCR
+@apiName PostAppOcr
+@apiGroup App
+@apiParam {Boolean} enabled If true, enable OCR
+@apiError (client) ForbiddenError Access denied
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @POST
     @Path("ocr")
     public Response ocr(@FormParam("enabled") Boolean enabled) {
@@ -173,17 +179,19 @@ public class AppResource extends BaseResource {
     /**
      * General application configuration.
      *
-     * @api {post} /app/config General application configuration
-     * @apiName PostAppConfig
-     * @apiGroup App
-     * @apiParam {String} default_language Default language
-     * @apiError (client) ForbiddenError Access denied
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @param defaultLanguage Default language
      * @return Response
      */
+/*
+@api {post} /app/config General application configuration
+@apiName PostAppConfig
+@apiGroup App
+@apiParam {String} default_language Default language
+@apiError (client) ForbiddenError Access denied
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @POST
     @Path("config")
     public Response config(@FormParam("default_language") String defaultLanguage) {
@@ -205,20 +213,22 @@ public class AppResource extends BaseResource {
     /**
      * Get the SMTP server configuration.
      *
-     * @api {get} /app/config_smtp Get the SMTP server configuration
-     * @apiName GetAppConfigSmtp
-     * @apiGroup App
-     * @apiSuccess {String} hostname SMTP hostname
-     * @apiSuccess {String} port SMTP port
-     * @apiSuccess {String} username SMTP username
-     * @apiSuccess {String} password SMTP password
-     * @apiSuccess {String} from From address
-     * @apiError (client) ForbiddenError Access denied
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @return Response
      */
+/*
+@api {get} /app/config_smtp Get the SMTP server configuration
+@apiName GetAppConfigSmtp
+@apiGroup App
+@apiSuccess {String} hostname SMTP hostname
+@apiSuccess {String} port SMTP port
+@apiSuccess {String} username SMTP username
+@apiSuccess {String} password SMTP password
+@apiSuccess {String} from From address
+@apiError (client) ForbiddenError Access denied
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @GET
     @Path("config_smtp")
     public Response getConfigSmtp() {
@@ -274,18 +284,6 @@ public class AppResource extends BaseResource {
     /**
      * Configure the SMTP server.
      *
-     * @api {post} /app/config_smtp Configure the SMTP server
-     * @apiName PostAppConfigSmtp
-     * @apiGroup App
-     * @apiParam {String} hostname SMTP hostname
-     * @apiParam {Integer} port SMTP port
-     * @apiParam {String} username SMTP username
-     * @apiParam {String} password SMTP password
-     * @apiParam {String} from From address
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @param hostname SMTP hostname
      * @param portStr SMTP port
@@ -294,6 +292,20 @@ public class AppResource extends BaseResource {
      * @param from From address
      * @return Response
      */
+/*
+@api {post} /app/config_smtp Configure the SMTP server
+@apiName PostAppConfigSmtp
+@apiGroup App
+@apiParam {String} hostname SMTP hostname
+@apiParam {Integer} port SMTP port
+@apiParam {String} username SMTP username
+@apiParam {String} password SMTP password
+@apiParam {String} from From address
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @POST
     @Path("config_smtp")
     public Response configSmtp(@FormParam("hostname") String hostname,
@@ -333,22 +345,24 @@ public class AppResource extends BaseResource {
     /**
      * Get the inbox configuration.
      *
-     * @api {get} /app/config_inbox Get the inbox scanning configuration
-     * @apiName GetAppConfigInbox
-     * @apiGroup App
-     * @apiSuccess {Boolean} enabled True if the inbox scanning is enabled
-     * @apiSuccess {String} hostname IMAP hostname
-     * @apiSuccess {String} port IMAP port
-     * @apiSuccess {String} username IMAP username
-     * @apiSuccess {String} password IMAP password
-     * @apiSuccess {String} folder IMAP folder
-     * @apiSuccess {String} tag Tag for created documents
-     * @apiError (client) ForbiddenError Access denied
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @return Response
      */
+/*
+@api {get} /app/config_inbox Get the inbox scanning configuration
+@apiName GetAppConfigInbox
+@apiGroup App
+@apiSuccess {Boolean} enabled True if the inbox scanning is enabled
+@apiSuccess {String} hostname IMAP hostname
+@apiSuccess {String} port IMAP port
+@apiSuccess {String} username IMAP username
+@apiSuccess {String} password IMAP password
+@apiSuccess {String} folder IMAP folder
+@apiSuccess {String} tag Tag for created documents
+@apiError (client) ForbiddenError Access denied
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @GET
     @Path("config_inbox")
     public Response getConfigInbox() {
@@ -423,22 +437,6 @@ public class AppResource extends BaseResource {
     /**
      * Configure the inbox.
      *
-     * @api {post} /app/config_inbox Configure the inbox scanning
-     * @apiName PostAppConfigInbox
-     * @apiGroup App
-     * @apiParam {Boolean} enabled True if the inbox scanning is enabled
-     * @apiParam {Boolean} autoTagsEnabled If true automatically add tags to document (prefixed by #)
-     * @apiParam {Boolean} deleteImported If true delete message from mailbox after import
-     * @apiParam {String} hostname IMAP hostname
-     * @apiParam {Integer} port IMAP port
-     * @apiParam {String} username IMAP username
-     * @apiParam {String} password IMAP password
-     * @apiParam {String} folder IMAP folder
-     * @apiParam {String} tag Tag for created documents
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @param enabled True if the inbox scanning is enabled
      * @param hostname IMAP hostname
@@ -449,6 +447,24 @@ public class AppResource extends BaseResource {
      * @param tag Tag for created documents
      * @return Response
      */
+/*
+@api {post} /app/config_inbox Configure the inbox scanning
+@apiName PostAppConfigInbox
+@apiGroup App
+@apiParam {Boolean} enabled True if the inbox scanning is enabled
+@apiParam {Boolean} autoTagsEnabled If true automatically add tags to document (prefixed by #)
+@apiParam {Boolean} deleteImported If true delete message from mailbox after import
+@apiParam {String} hostname IMAP hostname
+@apiParam {Integer} port IMAP port
+@apiParam {String} username IMAP username
+@apiParam {String} password IMAP password
+@apiParam {String} folder IMAP folder
+@apiParam {String} tag Tag for created documents
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @POST
     @Path("config_inbox")
     public Response configInbox(@FormParam("enabled") Boolean enabled,
@@ -504,16 +520,18 @@ public class AppResource extends BaseResource {
     /**
      * Test the inbox.
      *
-     * @api {post} /app/test_inbox Test the inbox scanning
-     * @apiName PostAppTestInbox
-     * @apiGroup App
-     * @apiSuccess {Number} Number of unread emails in the inbox
-     * @apiError (client) ForbiddenError Access denied
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @return Response
      */
+/*
+@api {post} /app/test_inbox Test the inbox scanning
+@apiName PostAppTestInbox
+@apiGroup App
+@apiSuccess {Number} Number of unread emails in the inbox
+@apiError (client) ForbiddenError Access denied
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @POST
     @Path("test_inbox")
     public Response testInbox() {
@@ -530,24 +548,6 @@ public class AppResource extends BaseResource {
     /**
      * Retrieve the application logs.
      *
-     * @api {get} /app/log Get application logs
-     * @apiName GetAppLog
-     * @apiGroup App
-     * @apiParam {String="FATAL","ERROR","WARN","INFO","DEBUG"} level Minimum log level
-     * @apiParam {String} tag Filter on this logger tag
-     * @apiParam {String} message Filter on this message
-     * @apiParam {Number} limit Total number of logs to return
-     * @apiParam {Number} offset Start at this index
-     * @apiSuccess {String} total Total number of logs
-     * @apiSuccess {Object[]} logs List of logs
-     * @apiSuccess {String} logs.date Date
-     * @apiSuccess {String} logs.level Level
-     * @apiSuccess {String} logs.tag Tag
-     * @apiSuccess {String} logs.message Message
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (server) ServerError MEMORY appender not configured
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @param minLevel Filter on logging level
      * @param tag Filter on logger name / tag
@@ -556,6 +556,26 @@ public class AppResource extends BaseResource {
      * @param offset Page offset
      * @return Response
      */
+/*
+@api {get} /app/log Get application logs
+@apiName GetAppLog
+@apiGroup App
+@apiParam {String="FATAL","ERROR","WARN","INFO","DEBUG"} level Minimum log level
+@apiParam {String} tag Filter on this logger tag
+@apiParam {String} message Filter on this message
+@apiParam {Number} limit Total number of logs to return
+@apiParam {Number} offset Start at this index
+@apiSuccess {String} total Total number of logs
+@apiSuccess {Object[]} logs List of logs
+@apiSuccess {String} logs.date Date
+@apiSuccess {String} logs.level Level
+@apiSuccess {String} logs.tag Tag
+@apiSuccess {String} logs.message Message
+@apiError (client) ForbiddenError Access denied
+@apiError (server) ServerError MEMORY appender not configured
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @GET
     @Path("log")
     public Response log(
@@ -604,17 +624,19 @@ public class AppResource extends BaseResource {
     /**
      * Destroy and rebuild the search index.
      *
-     * @api {post} /app/batch/reindex Rebuild the search index
-     * @apiName PostAppBatchReindex
-     * @apiGroup App
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (server) IndexingError Error rebuilding the index
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @return Response
      */
+/*
+@api {post} /app/batch/reindex Rebuild the search index
+@apiName PostAppBatchReindex
+@apiGroup App
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (server) IndexingError Error rebuilding the index
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @POST
     @Path("batch/reindex")
     public Response batchReindex() {
@@ -635,17 +657,19 @@ public class AppResource extends BaseResource {
     /**
      * Clean storage.
      *
-     * @api {post} /app/batch/clean_storage Clean the file and DB storage
-     * @apiName PostAppBatchCleanStorage
-     * @apiGroup App
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (server) FileError Error deleting orphan files
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @return Response
      */
+/*
+@api {post} /app/batch/clean_storage Clean the file and DB storage
+@apiName PostAppBatchCleanStorage
+@apiGroup App
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (server) FileError Error deleting orphan files
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @POST
     @Path("batch/clean_storage")
     public Response batchCleanStorage() {
@@ -753,24 +777,26 @@ public class AppResource extends BaseResource {
     /**
      * Get the LDAP authentication configuration.
      *
-     * @api {get} /app/config_ldap Get the LDAP authentication configuration
-     * @apiName GetAppConfigLdap
-     * @apiGroup App
-     * @apiSuccess {Boolean} enabled LDAP authentication enabled
-     * @apiSuccess {String} host LDAP server host
-     * @apiSuccess {Integer} port LDAP server port
-     * @apiSuccess {String} admin_dn Admin DN
-     * @apiSuccess {String} admin_password Admin password
-     * @apiSuccess {String} base_dn Base DN
-     * @apiSuccess {String} filter LDAP filter
-     * @apiSuccess {String} default_email LDAP default email
-     * @apiSuccess {Integer} default_storage LDAP default storage
-     * @apiError (client) ForbiddenError Access denied
-     * @apiPermission admin
-     * @apiVersion 1.9.0
      *
      * @return Response
      */
+/*
+@api {get} /app/config_ldap Get the LDAP authentication configuration
+@apiName GetAppConfigLdap
+@apiGroup App
+@apiSuccess {Boolean} enabled LDAP authentication enabled
+@apiSuccess {String} host LDAP server host
+@apiSuccess {Integer} port LDAP server port
+@apiSuccess {String} admin_dn Admin DN
+@apiSuccess {String} admin_password Admin password
+@apiSuccess {String} base_dn Base DN
+@apiSuccess {String} filter LDAP filter
+@apiSuccess {String} default_email LDAP default email
+@apiSuccess {Integer} default_storage LDAP default storage
+@apiError (client) ForbiddenError Access denied
+@apiPermission admin
+@apiVersion 1.9.0
+*/
     @GET
     @Path("config_ldap")
     public Response getConfigLdap() {
@@ -806,23 +832,6 @@ public class AppResource extends BaseResource {
     /**
      * Configure the LDAP authentication.
      *
-     * @api {post} /app/config_ldap Configure the LDAP authentication
-     * @apiName PostAppConfigLdap
-     * @apiGroup App
-     * @apiParam {Boolean} enabled LDAP authentication enabled
-     * @apiParam {String} host LDAP server host
-     * @apiParam {Integer} port LDAP server port
-     * @apiParam {Boolean} use SSL (ldaps)
-     * @apiParam {String} admin_dn Admin DN
-     * @apiParam {String} admin_password Admin password
-     * @apiParam {String} base_dn Base DN
-     * @apiParam {String} filter LDAP filter
-     * @apiParam {String} default_email LDAP default email
-     * @apiParam {Integer} default_storage LDAP default storage
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiPermission admin
-     * @apiVersion 1.9.0
      *
      * @param enabled LDAP authentication enabled
      * @param host LDAP server host
@@ -836,6 +845,25 @@ public class AppResource extends BaseResource {
      * @param defaultStorageStr LDAP default storage
      * @return Response
      */
+/*
+@api {post} /app/config_ldap Configure the LDAP authentication
+@apiName PostAppConfigLdap
+@apiGroup App
+@apiParam {Boolean} enabled LDAP authentication enabled
+@apiParam {String} host LDAP server host
+@apiParam {Integer} port LDAP server port
+@apiParam {Boolean} use SSL (ldaps)
+@apiParam {String} admin_dn Admin DN
+@apiParam {String} admin_password Admin password
+@apiParam {String} base_dn Base DN
+@apiParam {String} filter LDAP filter
+@apiParam {String} default_email LDAP default email
+@apiParam {Integer} default_storage LDAP default storage
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiPermission admin
+@apiVersion 1.9.0
+*/
     @POST
     @Path("config_ldap")
     public Response configLdap(@FormParam("enabled") Boolean enabled,

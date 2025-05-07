@@ -36,21 +36,23 @@ public class RouteModelResource extends BaseResource {
     /**
      * Returns the list of all route models.
      *
-     * @api {get} /routemodel Get route models
-     * @apiName GetRouteModel
-     * @apiGroup RouteModel
-     * @apiParam {Number} sort_column Column index to sort on
-     * @apiParam {Boolean} asc If true, sort in ascending order
-     * @apiSuccess {Object[]} routemodels List of route models
-     * @apiSuccess {String} routemodels.id ID
-     * @apiSuccess {String} routemodels.name Name
-     * @apiSuccess {Number} routemodels.create_date Create date (timestamp)
-     * @apiError (client) ForbiddenError Access denied
-     * @apiPermission user
-     * @apiVersion 1.5.0
      *
      * @return Response
      */
+/*
+@api {get} /routemodel Get route models
+@apiName GetRouteModel
+@apiGroup RouteModel
+@apiParam {Number} sort_column Column index to sort on
+@apiParam {Boolean} asc If true, sort in ascending order
+@apiSuccess {Object[]} routemodels List of route models
+@apiSuccess {String} routemodels.id ID
+@apiSuccess {String} routemodels.name Name
+@apiSuccess {Number} routemodels.create_date Create date (timestamp)
+@apiError (client) ForbiddenError Access denied
+@apiPermission user
+@apiVersion 1.5.0
+*/
     @GET
     public Response list(
             @QueryParam("sort_column") Integer sortColumn,
@@ -79,19 +81,21 @@ public class RouteModelResource extends BaseResource {
     /**
      * Add a route model.
      *
-     * @api {put} /routemodel Add a route model
-     * @apiName PutRouteModel
-     * @apiGroup RouteModel
-     * @apiParam {String} name Route model name
-     * @apiParam {String} steps Steps data in JSON
-     * @apiSuccess {String} id Route model ID
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @return Response
      */
+/*
+@api {put} /routemodel Add a route model
+@apiName PutRouteModel
+@apiGroup RouteModel
+@apiParam {String} name Route model name
+@apiParam {String} steps Steps data in JSON
+@apiSuccess {String} id Route model ID
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @PUT
     public Response add(@FormParam("name") String name, @FormParam("steps") String steps) {
         if (!authenticate()) {
@@ -263,20 +267,22 @@ public class RouteModelResource extends BaseResource {
     /**
      * Update a route model.
      *
-     * @api {post} /routemodel/:id Update a route model
-     * @apiName PostRouteModel
-     * @apiGroup RouteModel
-     * @apiParam {String} name Route model name
-     * @apiParam {String} steps Steps data in JSON
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiError (client) NotFound Route model not found
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @return Response
      */
+/*
+@api {post} /routemodel/:id Update a route model
+@apiName PostRouteModel
+@apiGroup RouteModel
+@apiParam {String} name Route model name
+@apiParam {String} steps Steps data in JSON
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiError (client) NotFound Route model not found
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @POST
     @Path("{id: [a-z0-9\\-]+}")
     public Response update(@PathParam("id") String id,
@@ -312,18 +318,20 @@ public class RouteModelResource extends BaseResource {
     /**
      * Delete a route model.
      *
-     * @api {delete} /routemodel/:id Delete a route model
-     * @apiName DeleteRouteModel
-     * @apiGroup RouteModel
-     * @apiParam {String} id Route model ID
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) NotFound Route model not found
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @return Response
      */
+/*
+@api {delete} /routemodel/:id Delete a route model
+@apiName DeleteRouteModel
+@apiGroup RouteModel
+@apiParam {String} id Route model ID
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (client) NotFound Route model not found
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @DELETE
     @Path("{id: [a-z0-9\\-]+}")
     public Response delete(@PathParam("id") String id) {
@@ -351,22 +359,24 @@ public class RouteModelResource extends BaseResource {
     /**
      * Get a route model.
      *
-     * @api {get} /routemodel/:id Get a route model
-     * @apiName GetRouteModel
-     * @apiGroup RouteModel
-     * @apiParam {String} id Route model ID
-     * @apiSuccess {String} id Route model ID
-     * @apiSuccess {String} name Route model name
-     * @apiSuccess {String} create_date Create date (timestamp)
-     * @apiSuccess {String} steps Steps data in JSON
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) NotFound Route model not found
-     * @apiPermission admin
-     * @apiVersion 1.5.0
      *
      * @param id RouteModel name
      * @return Response
      */
+/*
+@api {get} /routemodel/:id Get a route model
+@apiName GetRouteModel
+@apiGroup RouteModel
+@apiParam {String} id Route model ID
+@apiSuccess {String} id Route model ID
+@apiSuccess {String} name Route model name
+@apiSuccess {String} create_date Create date (timestamp)
+@apiSuccess {String} steps Steps data in JSON
+@apiError (client) ForbiddenError Access denied
+@apiError (client) NotFound Route model not found
+@apiPermission admin
+@apiVersion 1.5.0
+*/
     @GET
     @Path("{id: [a-z0-9\\-]+}")
     public Response get(@PathParam("id") String id) {

@@ -62,31 +62,33 @@ public class FileResource extends BaseResource {
     /**
      * Add a file (with or without a document).
      *
-     * @api {put} /file Add a file
-     * @apiDescription A file can be added without associated document, and will go in a temporary storage waiting for one.
      * This resource accepts only multipart/form-data.
-     * @apiName PutFile
-     * @apiGroup File
-     * @apiParam {String} [id] Document ID
-     * @apiParam {String} [previousFileId] ID of the file to replace by this new version
-     * @apiParam {String} file File data
-     * @apiSuccess {String} status Status OK
-     * @apiSuccess {String} id File ID
-     * @apiSuccess {Number} size File size (in bytes)
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiError (client) NotFound Document not found
-     * @apiError (server) StreamError Error reading the input file
-     * @apiError (server) ErrorGuessMime Error guessing mime type
-     * @apiError (client) QuotaReached Quota limit reached
-     * @apiError (server) FileError Error adding a file
-     * @apiPermission user
-     * @apiVersion 1.5.0
      *
      * @param documentId Document ID
      * @param fileBodyPart File to add
      * @return Response
      */
+/*
+@api {put} /file Add a file
+@apiDescription A file can be added without associated document, and will go in a temporary storage waiting for one.
+@apiName PutFile
+@apiGroup File
+@apiParam {String} [id] Document ID
+@apiParam {String} [previousFileId] ID of the file to replace by this new version
+@apiParam {String} file File data
+@apiSuccess {String} status Status OK
+@apiSuccess {String} id File ID
+@apiSuccess {Number} size File size (in bytes)
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiError (client) NotFound Document not found
+@apiError (server) StreamError Error reading the input file
+@apiError (server) ErrorGuessMime Error guessing mime type
+@apiError (client) QuotaReached Quota limit reached
+@apiError (server) FileError Error adding a file
+@apiPermission user
+@apiVersion 1.5.0
+*/
     @PUT
     @Consumes("multipart/form-data")
     public Response add(
@@ -145,22 +147,24 @@ public class FileResource extends BaseResource {
     /**
      * Attach a file to a document.
      *
-     * @api {post} /file/:fileId/attach Attach a file to a document
-     * @apiName PostFileAttach
-     * @apiGroup File
-     * @apiParam {String} fileId File ID
-     * @apiParam {String} id Document ID
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiError (client) IllegalFile File not orphan
-     * @apiError (server) AttachError Error attaching file to document
-     * @apiPermission user
-     * @apiVersion 1.5.0
      *
      * @param id File ID
      * @return Response
      */
+/*
+@api {post} /file/:fileId/attach Attach a file to a document
+@apiName PostFileAttach
+@apiGroup File
+@apiParam {String} fileId File ID
+@apiParam {String} id Document ID
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiError (client) IllegalFile File not orphan
+@apiError (server) AttachError Error attaching file to document
+@apiPermission user
+@apiVersion 1.5.0
+*/
     @POST
     @Path("{id: [a-z0-9\\-]+}/attach")
     public Response attach(
@@ -225,20 +229,22 @@ public class FileResource extends BaseResource {
     /**
      * Update a file.
      *
-     * @api {post} /file/:id Update a file
-     * @apiName PostFile
-     * @apiGroup File
-     * @apiParam {String} id File ID
-     * @apiParam {String} name Name
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiPermission user
-     * @apiVersion 1.6.0
      *
      * @param id File ID
      * @return Response
      */
+/*
+@api {post} /file/:id Update a file
+@apiName PostFile
+@apiGroup File
+@apiParam {String} id File ID
+@apiParam {String} name Name
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiPermission user
+@apiVersion 1.6.0
+*/
     @POST
     @Path("{id: [a-z0-9\\-]+}")
     public Response update(@PathParam("id") String id,
@@ -267,20 +273,22 @@ public class FileResource extends BaseResource {
     /**
      * Process a file manually.
      *
-     * @api {post} /file/:id/process Process a file manually
-     * @apiName PostFileProcess
-     * @apiGroup File
-     * @apiParam {String} id File ID
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiError (server) ProcessingError Processing error
-     * @apiPermission user
-     * @apiVersion 1.6.0
      *
      * @param id File ID
      * @return Response
      */
+/*
+@api {post} /file/:id/process Process a file manually
+@apiName PostFileProcess
+@apiGroup File
+@apiParam {String} id File ID
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiError (server) ProcessingError Processing error
+@apiPermission user
+@apiVersion 1.6.0
+*/
     @POST
     @Path("{id: [a-z0-9\\-]+}/process")
     public Response process(@PathParam("id") String id) {
@@ -328,22 +336,24 @@ public class FileResource extends BaseResource {
     /**
      * Reorder files.
      *
-     * @api {post} /file/:reorder Reorder files
-     * @apiName PostFileReorder
-     * @apiGroup File
-     * @apiParam {String} id Document ID
-     * @apiParam {String[]} order List of files ID
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) ValidationError Validation error
-     * @apiError (client) NotFound Document not found
-     * @apiPermission user
-     * @apiVersion 1.5.0
      *
      * @param documentId Document ID
      * @param idList List of files ID in the new order
      * @return Response
      */
+/*
+@api {post} /file/:reorder Reorder files
+@apiName PostFileReorder
+@apiGroup File
+@apiParam {String} id Document ID
+@apiParam {String[]} order List of files ID
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (client) ValidationError Validation error
+@apiError (client) NotFound Document not found
+@apiPermission user
+@apiVersion 1.5.0
+*/
     @POST
     @Path("reorder")
     public Response reorder(
@@ -387,30 +397,32 @@ public class FileResource extends BaseResource {
     /**
      * Returns files linked to a document or not linked to any document.
      *
-     * @api {get} /file/list Get files
-     * @apiName GetFileList
-     * @apiGroup File
-     * @apiParam {String} [id] Document ID
-     * @apiParam {String} [share] Share ID
-     * @apiSuccess {Object[]} files List of files
-     * @apiSuccess {String} files.id ID
-     * @apiSuccess {String} files.processing True if the file is currently processing
-     * @apiSuccess {String} files.name File name
-     * @apiSuccess {String} files.version Zero-based version number
-     * @apiSuccess {String} files.mimetype MIME type
-     * @apiSuccess {String} files.document_id Document ID
-     * @apiSuccess {String} files.create_date Create date (timestamp)
-     * @apiSuccess {String} files.size File size (in bytes)
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) NotFound Document not found
-     * @apiError (server) FileError Unable to get the size of a file
-     * @apiPermission none
-     * @apiVersion 1.5.0
      *
      * @param documentId Document ID
      * @param shareId Sharing ID
      * @return Response
      */
+/*
+@api {get} /file/list Get files
+@apiName GetFileList
+@apiGroup File
+@apiParam {String} [id] Document ID
+@apiParam {String} [share] Share ID
+@apiSuccess {Object[]} files List of files
+@apiSuccess {String} files.id ID
+@apiSuccess {String} files.processing True if the file is currently processing
+@apiSuccess {String} files.name File name
+@apiSuccess {String} files.version Zero-based version number
+@apiSuccess {String} files.mimetype MIME type
+@apiSuccess {String} files.document_id Document ID
+@apiSuccess {String} files.create_date Create date (timestamp)
+@apiSuccess {String} files.size File size (in bytes)
+@apiError (client) ForbiddenError Access denied
+@apiError (client) NotFound Document not found
+@apiError (server) FileError Unable to get the size of a file
+@apiPermission none
+@apiVersion 1.5.0
+*/
     @GET
     @Path("list")
     public Response list(
@@ -442,24 +454,26 @@ public class FileResource extends BaseResource {
     /**
      * List all versions of a file.
      *
-     * @api {get} /file/:id/versions Get versions of a file
-     * @apiName GetFileVersions
-     * @apiGroup File
-     * @apiParam {String} id File ID
-     * @apiSuccess {Object[]} files List of files
-     * @apiSuccess {String} files.id ID
-     * @apiSuccess {String} files.name File name
-     * @apiSuccess {String} files.version Zero-based version number
-     * @apiSuccess {String} files.mimetype MIME type
-     * @apiSuccess {String} files.create_date Create date (timestamp)
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) NotFound File not found
-     * @apiPermission user
-     * @apiVersion 1.5.0
      *
      * @param id File ID
      * @return Response
      */
+/*
+@api {get} /file/:id/versions Get versions of a file
+@apiName GetFileVersions
+@apiGroup File
+@apiParam {String} id File ID
+@apiSuccess {Object[]} files List of files
+@apiSuccess {String} files.id ID
+@apiSuccess {String} files.name File name
+@apiSuccess {String} files.version Zero-based version number
+@apiSuccess {String} files.mimetype MIME type
+@apiSuccess {String} files.create_date Create date (timestamp)
+@apiError (client) ForbiddenError Access denied
+@apiError (client) NotFound File not found
+@apiPermission user
+@apiVersion 1.5.0
+*/
     @GET
     @Path("{id: [a-z0-9\\-]+}/versions")
     public Response versions(@PathParam("id") String id) {
@@ -493,19 +507,21 @@ public class FileResource extends BaseResource {
     /**
      * Deletes a file.
      *
-     * @api {delete} /file/:id Delete a file
-     * @apiName DeleteFile
-     * @apiGroup File
-     * @apiParam {String} id File ID
-     * @apiSuccess {String} status Status OK
-     * @apiError (client) ForbiddenError Access denied
-     * @apiError (client) NotFound File or document not found
-     * @apiPermission user
-     * @apiVersion 1.5.0
      *
      * @param id File ID
      * @return Response
      */
+/*
+@api {delete} /file/:id Delete a file
+@apiName DeleteFile
+@apiGroup File
+@apiParam {String} id File ID
+@apiSuccess {String} status Status OK
+@apiError (client) ForbiddenError Access denied
+@apiError (client) NotFound File or document not found
+@apiPermission user
+@apiVersion 1.5.0
+*/
     @DELETE
     @Path("{id: [a-z0-9\\-]+}")
     public Response delete(
@@ -545,23 +561,25 @@ public class FileResource extends BaseResource {
     /**
      * Returns a file.
      *
-     * @api {get} /file/:id/data Get a file data
-     * @apiName GetFile
-     * @apiGroup File
-     * @apiParam {String} id File ID
-     * @apiParam {String} share Share ID
-     * @apiParam {String="web","thumb","content"} [size] Size variation
-     * @apiSuccess {Object} file The file data is the whole response
-     * @apiError (client) SizeError Size must be web or thumb
-     * @apiError (client) ForbiddenError Access denied or document not visible
-     * @apiError (client) NotFound File not found
-     * @apiError (server) ServiceUnavailable Error reading the file
-     * @apiPermission none
-     * @apiVersion 1.5.0
      *
      * @param fileId File ID
      * @return Response
      */
+/*
+@api {get} /file/:id/data Get a file data
+@apiName GetFile
+@apiGroup File
+@apiParam {String} id File ID
+@apiParam {String} share Share ID
+@apiParam {String="web","thumb","content"} [size] Size variation
+@apiSuccess {Object} file The file data is the whole response
+@apiError (client) SizeError Size must be web or thumb
+@apiError (client) ForbiddenError Access denied or document not visible
+@apiError (client) NotFound File not found
+@apiError (server) ServiceUnavailable Error reading the file
+@apiPermission none
+@apiVersion 1.5.0
+*/
     @GET
     @Path("{id: [a-z0-9\\-]+}/data")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
@@ -654,21 +672,23 @@ public class FileResource extends BaseResource {
     /**
      * Returns all files from a document, zipped.
      *
-     * @api {get} /file/zip Returns all files from a document, zipped.
-     * @apiName GetFileZip
-     * @apiGroup File
-     * @apiParam {String} id Document ID
-     * @apiParam {String} share Share ID
-     * @apiSuccess {Object} file The ZIP file is the whole response
-     * @apiError (client) NotFoundException Document not found
-     * @apiError (server) InternalServerError Error creating the ZIP file
-     * @apiPermission none
-     * @apiVersion 1.5.0
      *
      * @param documentId Document ID
      * @param shareId Share ID
      * @return Response
      */
+/*
+@api {get} /file/zip Returns all files from a document, zipped.
+@apiName GetFileZip
+@apiGroup File
+@apiParam {String} id Document ID
+@apiParam {String} share Share ID
+@apiSuccess {Object} file The ZIP file is the whole response
+@apiError (client) NotFoundException Document not found
+@apiError (server) InternalServerError Error creating the ZIP file
+@apiPermission none
+@apiVersion 1.5.0
+*/
     @GET
     @Path("zip")
     @Produces({MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN})
@@ -694,19 +714,21 @@ public class FileResource extends BaseResource {
     /**
      * Returns a list of files, zipped
      *
-     * @api {post} /file/zip Returns a list of files, zipped
-     * @apiName GetFilesZip
-     * @apiGroup File
-     * @apiParam {String[]} files IDs
-     * @apiSuccess {Object} file The ZIP file is the whole response
-     * @apiError (client) NotFoundException Files not found
-     * @apiError (server) InternalServerError Error creating the ZIP file
-     * @apiPermission none
-     * @apiVersion 1.11.0
      *
      * @param filesIdsList Files IDs
      * @return Response
      */
+/*
+@api {post} /file/zip Returns a list of files, zipped
+@apiName GetFilesZip
+@apiGroup File
+@apiParam {String[]} files IDs
+@apiSuccess {Object} file The ZIP file is the whole response
+@apiError (client) NotFoundException Files not found
+@apiError (server) InternalServerError Error creating the ZIP file
+@apiPermission none
+@apiVersion 1.11.0
+*/
     @POST
     @Path("zip")
     @Produces({MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN})
