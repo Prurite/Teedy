@@ -63,9 +63,8 @@ public class AuthenticationTokenDao {
      * Deletes old short lived tokens.
      *
      * @param userId User ID
-     * @throws Exception
      */
-    public void deleteOldSessionToken(String userId) throws Exception {
+    public void deleteOldSessionToken(String userId) {
         StringBuilder sb = new StringBuilder("delete from T_AUTHENTICATION_TOKEN AS ato ");
         sb.append(" where ato.AUT_IDUSER_C = :userId and ato.AUT_LONGLASTED_B = :longLasted");
         sb.append(" and ato.AUT_LASTCONNECTIONDATE_D < :minDate ");
@@ -82,9 +81,8 @@ public class AuthenticationTokenDao {
      * Deletes old short lived tokens.
      *
      * @param id Token id
-     * @throws Exception
      */
-    public void updateLastConnectionDate(String id) throws Exception {
+    public void updateLastConnectionDate(String id) {
         StringBuilder sb = new StringBuilder("update T_AUTHENTICATION_TOKEN ato ");
         sb.append(" set AUT_LASTCONNECTIONDATE_D = :currentDate ");
         sb.append(" where ato.AUT_ID_C = :id");
