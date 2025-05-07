@@ -65,7 +65,7 @@ public class AuthenticationTokenDao {
      * @param userId User ID
      * @throws Exception
      */
-    public void deleteOldSessionToken(String userId) {
+    public void deleteOldSessionToken(String userId) throws Exception {
         StringBuilder sb = new StringBuilder("delete from T_AUTHENTICATION_TOKEN AS ato ");
         sb.append(" where ato.AUT_IDUSER_C = :userId and ato.AUT_LONGLASTED_B = :longLasted");
         sb.append(" and ato.AUT_LASTCONNECTIONDATE_D < :minDate ");
@@ -84,7 +84,7 @@ public class AuthenticationTokenDao {
      * @param id Token id
      * @throws Exception
      */
-    public void updateLastConnectionDate(String id) {
+    public void updateLastConnectionDate(String id) throws Exception {
         StringBuilder sb = new StringBuilder("update T_AUTHENTICATION_TOKEN ato ");
         sb.append(" set AUT_LASTCONNECTIONDATE_D = :currentDate ");
         sb.append(" where ato.AUT_ID_C = :id");
