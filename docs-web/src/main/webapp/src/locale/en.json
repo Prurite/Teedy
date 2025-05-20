@@ -8,6 +8,8 @@
     "remember_me": "Remember me",
     "submit": "Sign in",
     "login_as_guest": "Login as guest",
+    "no_account_yet": "Do not have an account?",
+    "register_request": "Request for one",
     "login_failed_title": "Login failed",
     "login_failed_message": "Username or password invalid",
     "password_lost_btn": "Password lost?",
@@ -26,6 +28,19 @@
     "submit": "Change my password",
     "error_title": "Error changing your password",
     "error_message": "Your password recovery request is expired, please ask for a new one on the login page"
+  },
+  "registration": {
+    "title": "Registration Request",
+    "description": "Fill the form below to request a new user account. An administrator will review your request and contact you.",
+    "name": "Full Name",
+    "name_placeholder": "Enter your full name",
+    "email": "Email Address",
+    "email_placeholder": "Enter your email address",
+    "submit": "Submit Request",
+    "success": "Your registration request has been submitted successfully. You will be contacted once your request is processed.",
+    "already_requested": "A registration request with this email is already pending",
+    "email_exists": "A user with this email already exists",
+    "back_to_login": "Back to login page"
   },
   "index": {
     "toggle_navigation": "Toggle navigation",
@@ -281,6 +296,7 @@
     "menu_ldap": "LDAP authentication",
     "menu_metadata": "Custom metadata",
     "menu_monitoring": "Monitoring",
+    "menu_registration_requests": "Registration Requests",
     "ldap": {
       "title": "LDAP authentication",
       "enabled": "Enable LDAP authentication",
@@ -430,7 +446,11 @@
       "webhook_event": "Event",
       "webhook_url": "URL",
       "webhook_create_date": "Create date",
-      "webhook_add": "Add a webhook"
+      "webhook_add": "Add a webhook",
+      "title_user_registration": "User registration",
+      "message_user_registration": "User registration allows visitors to request an account on {{ appName }}. You will need to review and approve these requests from the Settings > Registration Requests section.",
+      "enable_user_registration": "Enable user registration",
+      "disable_user_registration": "Disable user registration"
     },
     "metadata": {
       "title": "Custom metadata configuration",
@@ -501,6 +521,30 @@
       "line_3": "Your files will be imported in documents according to the file importer configuration.",
       "download": "Download",
       "instructions": "Instructions"
+    },
+    "request": {
+      "title": "Registration Requests",
+      "description": "Manage user registration requests. Approve or reject requests from users wanting to join the system.",
+      "name": "Name",
+      "email": "Email",
+      "status": "Status",
+      "create_date": "Request Date",
+      "actions": "Actions",
+      "status_pending": "Pending",
+      "status_approved": "Approved",
+      "status_rejected": "Rejected",
+      "approve": "Approve",
+      "reject": "Reject",
+      "reject_title": "Reject Registration Request",
+      "already_processed": "Already processed",
+      "no_requests": "No registration requests found",
+      "approve_title": "Approve Registration Request",
+      "approve_message": "Create a new user account based on this registration request:",
+      "approve_name": "Name",
+      "approve_email": "Email",
+      "error_approve": "An error occurred while approving the request",
+      "error_reject": "An error occurred while rejecting the request",
+      "confirm_reject": "Are you sure you want to reject this registration request?"
     }
   },
   "feedback": {

@@ -79,6 +79,14 @@
           <button type="submit" class="btn btn-default btn-block" ng-if="app.guest_login" ng-click="loginAsGuest()">
             <span class="fas fa-user"></span> {{ 'login.login_as_guest' | translate }}
           </button>
+
+          <div class="text-center mt-3" ng-if="app.user_registration">
+            <p></p>
+            <p>{{ 'login.no_account_yet' | translate }}</p>
+            <button type="button" class="btn btn-outline-secondary btn-block" ng-click="openRegistrationRequest()">
+              <span class="fas fa-user-plus"></span> {{ 'login.register_request' | translate }}
+            </button>
+          </div>
         </form>
       </div>
     </div>

@@ -85,6 +85,7 @@ public class AppResource extends BaseResource {
         String currentVersion = configBundle.getString("api.current_version");
         String minVersion = configBundle.getString("api.min_version");
         Boolean guestLogin = ConfigUtil.getConfigBooleanValue(ConfigType.GUEST_LOGIN);
+        Boolean userRegistrationEnabled = ConfigUtil.getConfigBooleanValue(ConfigType.USER_REGISTRATION_ENABLED);
         Boolean ocrEnabled = ConfigUtil.getConfigBooleanValue(ConfigType.OCR_ENABLED, true);
         String defaultLanguage = ConfigUtil.getConfigStringValue(ConfigType.DEFAULT_LANGUAGE);
         UserDao userDao = new UserDao();
@@ -99,6 +100,7 @@ public class AppResource extends BaseResource {
                 .add("current_version", currentVersion.replace("-SNAPSHOT", ""))
                 .add("min_version", minVersion)
                 .add("guest_login", guestLogin)
+                .add("user_registration", userRegistrationEnabled)
                 .add("ocr_enabled", ocrEnabled)
                 .add("default_language", defaultLanguage)
                 .add("queued_tasks", AppContext.getInstance().getQueuedTaskCount())
@@ -138,6 +140,35 @@ public class AppResource extends BaseResource {
 
         ConfigDao configDao = new ConfigDao();
         configDao.update(ConfigType.GUEST_LOGIN, enabled.toString());
+
+        return Response.ok().build();
+    }
+
+    /**
+     * Enable/disable user registration.
+     * 
+     * @api {post} /app/user_registration Enable/disable user registration
+     * @apiName PostAppUserRegistration
+     * @apiGroup App
+     * @apiParam {Boolean} enabled If true, enable user registration
+     * @apiError (client) ForbiddenError Access denied
+     * @apiPermission admin
+     * @apiVersion 1.5.0
+     * 
+     * @param enabled If true, enable user registration
+     * @return Response
+     */
+    @POST
+    @Path("user_registration")
+    public Response userRegistration(@FormParam("enabled") Boolean enabled) {
+        // print the request to console
+        if (!authenticate()) {
+            throw new ForbiddenClientException();
+        }
+        checkBaseFunction(BaseFunction.ADMIN);
+
+        ConfigDao configDao = new ConfigDao();
+        configDao.update(ConfigType.USER_REGISTRATION_ENABLED, enabled.toString());
 
         return Response.ok().build();
     }

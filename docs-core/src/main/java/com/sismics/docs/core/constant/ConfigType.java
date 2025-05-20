@@ -21,6 +21,11 @@ public enum ConfigType {
     GUEST_LOGIN,
 
     /**
+     * Enable user registration.
+     */
+    USER_REGISTRATION_ENABLED,
+
+    /**
      * OCR enabled.
      */
     OCR_ENABLED,

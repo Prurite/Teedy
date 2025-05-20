@@ -21,6 +21,15 @@ angular.module('docs').controller('SettingsConfig', function($scope, $rootScope,
     });
   };
 
+  // Enable/disable guest registration
+  $scope.changeUserRegistration = function (enabled) {
+    Restangular.one('app').post('user_registration', {
+      enabled: enabled
+    }).then(function () {
+      $scope.app.user_registration = enabled;
+    });
+  };
+
   // Enable/disable OCR
   $scope.changeOcrEnabled = function (enabled) {
     Restangular.one('app').post('ocr', {

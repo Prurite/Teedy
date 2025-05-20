@@ -154,6 +154,15 @@ angular.module('docs',
         }
       }
     })
+    .state('settings.request', {
+      url: '/request',
+      views: {
+        'settings': {
+          templateUrl: 'partial/docs/settings.request.html',
+          controller: 'SettingsUserRequest'
+        }
+      }
+    })
     .state('settings.user', {
       url: '/user',
       views: {
@@ -361,6 +370,15 @@ angular.module('docs',
         'page': {
           templateUrl: 'partial/docs/login.html',
           controller: 'Login'
+        }
+      }
+    })
+    .state('registrationrequest', {
+      url: '/registration',
+      views: {
+        'page': {
+          templateUrl: 'partial/docs/registration-request.html',
+          controller: 'RegistrationRequest'
         }
       }
     })

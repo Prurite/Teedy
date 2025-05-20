@@ -8,6 +8,8 @@
     "remember_me": "记住我",
     "submit": "登录",
     "login_as_guest": "以游客身份登录",
+    "no_account_yet": "没有账号?",
+    "register_request": "申请注册",
     "login_failed_title": "登录失败",
     "login_failed_message": "用户名或密码不正确",
     "password_lost_btn": "密码丢失？",
@@ -26,6 +28,19 @@
     "submit": "更改我的密码",
     "error_title": "密码更改出错",
     "error_message": "您的密码恢复请求已过期，请在登录页面上提交新的请求"
+  },
+  "registration": {
+    "title": "注册申请",
+    "description": "请填写以下表单申请新用户账号。管理员将审核您的申请并与您联系。",
+    "name": "姓名",
+    "name_placeholder": "请输入您的姓名",
+    "email": "电子邮箱",
+    "email_placeholder": "请输入您的电子邮箱",
+    "submit": "提交申请",
+    "success": "您的注册申请已成功提交。申请处理完毕后会与您联系。",
+    "already_requested": "使用此电子邮箱的注册申请已在等待处理中",
+    "email_exists": "使用此电子邮箱的用户已存在",
+    "back_to_login": "返回登录页面"
   },
   "index": {
     "toggle_navigation": "切换导航",
@@ -77,6 +92,16 @@
     "upgrade_quota": "如需要升级您的限额, 请联系管理员",
     "quota": "{{ current | number: 0 }}MB ({{ current | number: 1 }}%) 已使用 {{ total | number: 0 }}MB",
     "count": "找到{{ count }}个文件",
+    "navigation_up": "向上一级",
+    "toggle_navigation": "切换文件夹导航",
+    "display_mode_list": "以列表显示文档",
+    "display_mode_grid": "以网格显示文档",
+    "search_before_update_date": "在此更新日期之前",
+    "search_after_update_date": "在此更新日期之后",
+    "search_shared": "仅共享文档",
+    "search_workflow": "分配给我的工作流程",
+    "current_step_name": "当前步骤",
+    "last_updated": "最后更新 {{ date | timeAgo: dateFormat }}",
     "view": {
       "delete_comment_title": "删除评论",
       "delete_comment_message": "您是否确认删除此评论?",
@@ -106,7 +131,13 @@
         "upload_error": "上传失败",
         "upload_error_quota": "已达到您的限额",
         "drop_zone": "将文件拖放至此处上传",
-        "add_files": "添加文件"
+        "add_files": "添加文件",
+        "file_processing_indicator": "此文件正在处理中。完成之前无法进行搜索。",
+        "reprocess_file": "重新处理此文件",
+        "upload_new_version": "上传新版本",
+        "open_versions": "显示版本历史",
+        "display_mode_list": "以列表显示文件",
+        "display_mode_grid": "以网格显示文件"
       },
       "workflow": {
         "workflow": "工作流程",
@@ -117,7 +148,8 @@
         "full_name": "<strong>{{ name }}</strong>开始于{{ create_date | date }}",
         "cancel_workflow": "取消当前的工作流程",
         "cancel_workflow_title": "取消工作流程",
-        "cancel_workflow_message": "你真的想取消当前的工作流程吗？"
+        "cancel_workflow_message": "你真的想取消当前的工作流程吗？",
+        "no_workflow": "您无法在此文档上启动任何工作流程。"
       },
       "permissions": {
         "permissions": "权限",
@@ -239,6 +271,7 @@
     "menu_user_account": "用户帐号",
     "menu_two_factor_auth": "双重身份验证",
     "menu_opened_sessions": "已打开会话",
+    "menu_file_importer": "批量文件导入器",
     "menu_general_settings": "一般设置",
     "menu_workflow": "工作流程",
     "menu_users": "用户",
@@ -246,7 +279,10 @@
     "menu_vocabularies": "词条",
     "menu_configuration": "配置",
     "menu_inbox": "收件箱扫描",
-    "menu_server_logs": "服务器日志",
+    "menu_ldap": "LDAP认证",
+    "menu_metadata": "自定义元数据",
+    "menu_monitoring": "监控",
+    "menu_registration_requests": "注册请求",
     "user": {
       "title": "用户 <small>管理</small>",
       "add_user": "添加用户",
@@ -374,7 +410,10 @@
       "test": "测试参数",
       "last_sync": "上次同步：{{ data.date | date }}，{{ data.count }}消息导入",
       "test_success": "与收件箱的连接成功（{{count}}消息）",
-      "test_fail": "连接到收件箱时发生错误，请检查参数"
+      "test_fail": "连接到收件箱时发生错误，请检查参数",
+      "starttls": "启用STARTTLS",
+      "autoTagsEnabled": "从主题行中标记为#的内容自动添加标签",
+      "deleteImported": "导入后从邮箱中删除消息"
     },
     "log": {
       "title": "服务器 <small>日志</small>",
@@ -401,6 +440,71 @@
       "value": "值",
       "order": "顺序",
       "new_entry": "新输入"
+    },
+    "ldap": {
+      "title": "LDAP认证",
+      "enabled": "启用LDAP认证",
+      "host": "LDAP主机名",
+      "port": "LDAP端口（默认389）",
+      "usessl": "启用SSL（ldaps）",
+      "admin_dn": "管理员DN",
+      "admin_password": "管理员密码",
+      "base_dn": "基本搜索DN",
+      "filter": "搜索过滤器（必须包含USERNAME，例如\"(uid=USERNAME)\"）",
+      "default_email": "LDAP用户的默认邮箱",
+      "default_storage": "LDAP用户的默认存储",
+      "saved": "LDAP配置已成功保存"
+    },
+    "metadata": {
+      "title": "自定义元数据配置",
+      "message": "在此处，您可以为文档添加自定义元数据，例如内部标识符或到期日期。请注意，元数据类型在创建后无法更改。",
+      "name": "元数据名称",
+      "type": "元数据类型"
+    },
+    "monitoring": {
+      "background_tasks": "后台任务",
+      "queued_tasks": "当前有 {{ count }} 个排队任务。",
+      "queued_tasks_explain": "文件处理、缩略图创建、索引更新、光学字符识别是后台任务。未处理任务过多会导致搜索结果不完整。",
+      "indexing": "索引",
+      "indexing_info": "如果您发现搜索结果有差异，可以尝试进行完整的重新索引。在此操作完成之前，搜索结果将不完整。",
+      "start_reindexing": "开始完整重新索引",
+      "reindexing_started": "重新索引已开始，请等待后台任务完成。"
+    },
+    "fileimporter": {
+      "title": "批量文件导入器",
+      "advanced_users": "适用于高级用户！",
+      "need_intro": "如果您需要：",
+      "need_1": "一次性导入一个目录中的文件",
+      "need_2": "扫描目录中的新文件并导入它们",
+      "line_1": "前往<a href=\"https://github.com/sismics/docs/releases\">sismics/docs/releases</a>下载适用于您的系统的文件导入工具。",
+      "line_2": "按照<a href=\"https://github.com/sismics/docs/tree/master/docs-importer\">此处的说明</a>使用该工具。",
+      "line_3": "根据文件导入器配置，您的文件将被导入到文档中。",
+      "download": "下载",
+      "instructions": "说明"
+    },
+    "request": {
+      "title": "注册请求",
+      "description": "管理用户注册请求。批准或拒绝希望加入系统的用户请求。",
+      "name": "姓名",
+      "email": "电子邮箱",
+      "status": "状态",
+      "create_date": "请求日期",
+      "actions": "操作",
+      "status_pending": "待处理",
+      "status_approved": "已批准",
+      "status_rejected": "已拒绝",
+      "approve": "批准",
+      "reject": "拒绝",
+      "reject_title": "拒绝注册请求",
+      "already_processed": "已处理",
+      "no_requests": "未找到注册请求",
+      "approve_title": "批准注册请求",
+      "approve_message": "根据此注册请求创建一个新用户账号：",
+      "approve_name": "姓名",
+      "approve_email": "电子邮箱",
+      "error_approve": "批准请求时发生错误",
+      "error_reject": "拒绝请求时发生错误",
+      "confirm_reject": "您确定要拒绝此注册请求吗？"
     }
   },
   "feedback": {

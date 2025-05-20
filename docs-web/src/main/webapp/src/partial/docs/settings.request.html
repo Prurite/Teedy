@@ -1,0 +1,103 @@
+<h1>
+  <span translate="settings.request.title"></span>
+</h1>
+
+<p translate="settings.request.description"></p>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="well" ng-if="!requests || requests.length === 0">
+      <p translate="settings.request.no_requests"></p>
+    </div>
+    
+    <table class="table table-striped" ng-if="requests && requests.length > 0">
+      <thead>
+        <tr>
+          <th translate="settings.request.name"></th>
+          <th translate="settings.request.email"></th>
+          <th translate="settings.request.status"></th>
+          <th translate="settings.request.create_date"></th>
+          <th translate="settings.request.actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="request in requests">
+          <td>{{ request.name }}</td>
+          <td>{{ request.email }}</td>
+          <td>
+            <span class="label label-warning" ng-if="request.status === 'PENDING'" translate="settings.request.status_pending"></span>
+            <span class="label label-success" ng-if="request.status === 'APPROVED'" translate="settings.request.status_approved"></span>
+            <span class="label label-danger" ng-if="request.status === 'REJECTED'" translate="settings.request.status_rejected"></span>
+          </td>
+          <td>{{ request.create_date | date: dateFormat }}</td>
+          <td>
+            <button class="btn btn-success btn-xs" ng-click="approve(request)" ng-if="request.status === 'PENDING'">
+              <span class="fas fa-check"></span> {{ 'settings.request.approve' | translate }}
+            </button>
+            <button class="btn btn-danger btn-xs" ng-click="reject(request)" ng-if="request.status === 'PENDING'">
+              <span class="fas fa-times"></span> {{ 'settings.request.reject' | translate }}
+            </button>
+            <span class="text-muted" ng-if="request.status !== 'PENDING'" translate="settings.request.already_processed"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Template for the approve modal dialog -->
+<script type="text/ng-template" id="approveModalTemplate">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" translate="settings.request.approve_title"></h4>
+  </div>
+  <div class="modal-body">
+    <!-- Display error messages -->
+    <div class="alert alert-danger" ng-if="error">
+      {{ error }}
+    </div>
+    
+    <p translate="settings.request.approve_message"></p>
+    
+    <div class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-3 control-label" translate="settings.request.approve_name"></label>
+        <div class="col-sm-9">
+          <p class="form-control-static">{{ selectedRequest.name }}</p>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-sm-3 control-label" translate="settings.request.approve_email"></label>
+        <div class="col-sm-9">
+          <p class="form-control-static">{{ selectedRequest.email }}</p>
+        </div>
+      </div>
+      
+      <div class="form-group" ng-class="{'has-error': usernameError}">
+        <label for="inputUsername" class="col-sm-3 control-label" translate="settings.user.edit.username"></label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="inputUsername" ng-model="user.username" placeholder="{{ 'settings.user.edit.username' | translate }}" required>
+        </div>
+      </div>
+      
+      <div class="form-group" ng-class="{'has-error': passwordError}">
+        <label for="inputPassword" class="col-sm-3 control-label" translate="settings.user.edit.password"></label>
+        <div class="col-sm-9">
+          <input type="password" class="form-control" id="inputPassword" ng-model="user.password" placeholder="{{ 'settings.user.edit.password' | translate }}" required>
+        </div>
+      </div>
+      
+      <div class="form-group" ng-class="{'has-error': quotaError}">
+        <label for="inputStorageQuota" class="col-sm-3 control-label" translate="settings.user.edit.storage_quota"></label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" id="inputStorageQuota" ng-model="user.storage_quota" placeholder="{{ 'settings.user.edit.storage_quota_placeholder' | translate }}" required>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="$dismiss()" translate="cancel"></button>
+    <button type="button" class="btn btn-primary" ng-click="confirmApprove()" translate="ok"></button>
+  </div>
+</script>

@@ -11,6 +11,19 @@
   <button ng-if="app.guest_login" class="btn btn-danger" ng-click="changeGuestLogin(false)">{{ 'settings.config.disable_guest_access' | translate }}</button>
 </div>
 
+<h2>
+  <span translate="settings.config.title_user_registration"></span>
+  <span class="label" ng-class="{ 'label-success': app.user_registration, 'label-danger': !app.user_registration }">
+    {{ app.user_registration ? 'enabled' : 'disabled' | translate }}
+  </span>
+</h2>
+<p translate="settings.config.message_user_registration" translate-values="{ appName: appName }">
+</p>
+<div ng-if="app">
+  <button ng-if="!app.user_registration" class="btn btn-primary" ng-click="changeUserRegistration(true)">{{ 'settings.config.enable_user_registration' | translate }}</button>
+  <button ng-if="app.user_registration" class="btn btn-danger" ng-click="changeUserRegistration(false)">{{ 'settings.config.disable_user_registration' | translate }}</button>
+</div>
+
 <h2 translate="settings.config.title_general"></h2>
 <form class="form-horizontal" name="generalForm" novalidate>
   <div class="form-group" ng-class="{ 'has-error': !generalForm.defaultLanguage.$valid && generalForm.$dirty }">

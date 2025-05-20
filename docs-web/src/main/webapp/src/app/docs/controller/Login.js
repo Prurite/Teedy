@@ -75,4 +75,11 @@ angular.module('docs').controller('Login', function(Restangular, $scope, $rootSc
       });
     });
   };
+
+  /**
+   * Open registration request page.
+   */
+  $scope.openRegistrationRequest = function() {
+    $state.go('registrationrequest');
+  };
 });
