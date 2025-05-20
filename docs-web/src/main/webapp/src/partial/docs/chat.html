@@ -1,0 +1,101 @@
+<div class="chat-widget" ng-controller="Chat">
+  <!-- Chat Button with Badge -->
+  <button class="btn btn-primary chat-button" ng-click="toggleChat()">
+    <span class="fas fa-comments"></span>
+    <span class="badge badge-notify" ng-if="unreadCount > 0">{{ unreadCount }}</span>
+  </button>
+  
+  <!-- Chat Modal -->
+  <div class="chat-modal" ng-class="{ 'open': open }">
+    <div class="chat-header">
+      <h4>{{ 'chat.title' | translate }}</h4>
+      <button class="btn btn-sm btn-link" ng-click="toggleChat()">
+        <span class="fas fa-times"></span>
+      </button>
+    </div>
+    
+    <div class="chat-body">
+      <!-- Left Panel: Conversations -->
+      <div class="chat-conversations">
+        <div class="chat-search">
+          <button class="btn btn-sm btn-primary" ng-click="openNewConversation()">
+            <span class="fas fa-plus"></span> {{ 'chat.new_conversation' | translate }}
+          </button>
+        </div>
+        
+        <div class="chat-conversation-list">
+          <div class="chat-no-conversations" ng-if="conversations.length === 0">
+            {{ 'chat.no_conversations' | translate }}
+          </div>
+          <div class="chat-conversation-item" 
+               ng-repeat="conversation in conversations" 
+               ng-click="openConversation(conversation)"
+               ng-class="{ 'active': activeConversation && activeConversation.userId === conversation.userId }">
+            <div class="chat-conversation-name">{{ conversation.username }}</div>
+            <div class="chat-conversation-preview">
+              <span ng-if="conversation.lastMessage.isFromMe">{{ 'chat.you' | translate }}: </span>
+              {{ conversation.lastMessage.content | limitTo:30 }}{{ conversation.lastMessage.content.length > 30 ? '...' : '' }}
+            </div>
+            <div class="chat-conversation-badge" ng-if="conversation.unreadCount > 0">
+              {{ conversation.unreadCount }}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Panel: Messages -->
+      <div class="chat-messages">
+        <div class="chat-message-header" ng-if="activeConversation">
+          {{ activeConversation.username }}
+        </div>
+        
+        <div class="chat-message-content" ng-if="activeConversation">
+          <div class="chat-load-more" ng-if="messages.length < messagesTotal">
+            <button class="btn btn-sm btn-link" ng-click="loadMoreMessages()" ng-disabled="loadingMore">
+              <span ng-if="!loadingMore">{{ 'chat.load_more' | translate }}</span>
+              <span ng-if="loadingMore" class="fas fa-spinner fa-spin"></span>
+            </button>
+          </div>
+          
+          <div class="chat-message-list">
+            <div class="chat-message" ng-repeat="message in messages" 
+                 ng-class="{ 'chat-message-sent': message.isFromMe, 'chat-message-received': !message.isFromMe }">
+              <div class="chat-message-bubble">
+                {{ message.content }}
+              </div>
+              <div class="chat-message-time">
+                {{ message.createDate | date:'short' }}
+              </div>
+            </div>
+            
+            <div class="chat-loading" ng-if="loading">
+              <span class="fas fa-spinner fa-spin"></span>
+            </div>
+            
+            <div class="chat-empty" ng-if="!loading && messages.length === 0">
+              {{ 'chat.start_conversation' | translate }}
+            </div>
+          </div>
+        </div>
+        
+        <div class="chat-no-conversation" ng-if="!activeConversation">
+          {{ 'chat.select_conversation' | translate }}
+        </div>
+        
+        <div class="chat-message-input" ng-if="activeConversation">
+          <form ng-submit="sendMessage()">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="{{ 'chat.type_message' | translate }}" name="chat_message"
+                    ng-model="$parent.messageContent" ng-enter="sendMessage()">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit" ng-disabled="!$parent.messageContent">
+                  <span class="fas fa-paper-plane"></span>
+                </button>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -60,6 +60,7 @@
     <script src="app/docs/controller/PasswordReset.js" type="text/javascript"></script>
     <script src="app/docs/controller/Navigation.js" type="text/javascript"></script>
     <script src="app/docs/controller/Footer.js" type="text/javascript"></script>
+    <script src="app/docs/controller/Chat.js" type="text/javascript"></script>
     <script src="app/docs/controller/document/Document.js" type="text/javascript"></script>
     <script src="app/docs/controller/document/DocumentDefault.js" type="text/javascript"></script>
     <script src="app/docs/controller/document/DocumentEdit.js" type="text/javascript"></script>
@@ -219,5 +220,8 @@
         </ul>
       </div>
     </div>
+    
+    <!-- Add the chat widget -->
+    <div ng-include="'partial/docs/chat.html'" ng-if="!userInfo.anonymous"></div>
   </body>
 </html>

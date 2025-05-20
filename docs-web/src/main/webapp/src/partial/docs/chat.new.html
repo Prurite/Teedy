@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{ 'chat.new_conversation' | translate }}</h3>
+</div>
+
+<div class="modal-body">
+  <div class="form-group">
+    <input type="text" class="form-control" ng-model="searchText" 
+           placeholder="{{ 'chat.search_users' | translate }}">
+  </div>
+  
+  <div class="chat-user-list">
+    <div class="chat-user-item" ng-repeat="user in filteredUsers()" ng-click="selectUser(user)">
+      <span class="fas fa-user"></span> {{ user.username }}
+    </div>
+    
+    <div class="chat-no-users" ng-if="filteredUsers().length === 0">
+      {{ 'chat.no_users_found' | translate }}
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-default" type="button" ng-click="cancel()">
+    {{ 'cancel' | translate }}
+  </button>
+</div>

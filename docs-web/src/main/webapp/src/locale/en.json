@@ -585,6 +585,7 @@
       "RouteModel": "Workflow model",
       "Tag": "Tag",
       "User": "User",
+      "UserRegistrationRequest": "Registration request",
       "Webhook": "Webhook"
     },
     "selectrelation": {
@@ -664,6 +665,18 @@
       "title": "Tags",
       "description": "Documents can be organized in tags (which are like super-folders). Create them here."
     }
+  },
+  "chat": {
+    "title": "Messages",
+    "new_conversation": "New Conversation",
+    "no_conversations": "No conversations yet",
+    "select_conversation": "Select a conversation to start chatting",
+    "start_conversation": "Start the conversation by sending a message",
+    "type_message": "Type a message...",
+    "search_users": "Search users",
+    "no_users_found": "No users found",
+    "load_more": "Load more messages",
+    "you": "You"
   },
   "yes": "Yes",
   "no": "No",

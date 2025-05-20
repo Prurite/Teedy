@@ -543,6 +543,7 @@
       "Group": "组",
       "Tag": "标签",
       "User": "用户",
+      "UserRegistrationRequest": "注册请求",
       "RouteModel": "工作流程",
       "Route": "工作流程"
     },
@@ -595,6 +596,18 @@
     "next": "下一个",
     "first": "第一",
     "last": "持续"
+  },
+  "chat": {
+    "title": "消息",
+    "new_conversation": "新会话",
+    "no_conversations": "暂无会话",
+    "select_conversation": "选择一个会话开始聊天",
+    "start_conversation": "发送消息开始会话",
+    "type_message": "输入消息...",
+    "search_users": "搜索用户",
+    "no_users_found": "未找到用户",
+    "load_more": "加载更多消息",
+    "you": "您"
   },
   "ok": "确认",
   "cancel": "取消",

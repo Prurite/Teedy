@@ -591,6 +591,21 @@ angular.module('docs',
  */
 .run (function ($rootScope) {
   $rootScope.onboardingEnabled = false;
+})
+/**
+ * Add ngEnter directive for chat input.
+ */
+.directive('ngEnter', function () {
+  return function (scope, element, attrs) {
+    element.bind("keydown keypress", function (event) {
+      if (event.which === 13) {
+        scope.$applyAsync(function () {
+          scope.$eval(attrs.ngEnter);
+        });
+        event.preventDefault();
+      }
+    });
+  };
 });
 
 if (location.search.indexOf("protractor") > -1) {
