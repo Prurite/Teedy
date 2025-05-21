@@ -15,11 +15,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                checkout scm
-                git(
-                    branches: [[name: '*/master']],
-                    userRemoteConfigs: [[url: 'https://github.com/prurite/Teedy.git']]
-                )
                 sh 'mvn -B -DskipTests clean package'
             }
         }
