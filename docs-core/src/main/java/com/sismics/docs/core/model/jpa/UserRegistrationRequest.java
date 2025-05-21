@@ -1,3 +1,11 @@
+/** AI-genereated-content
+ *  Tool: Github Copilot
+ *  Version: Claude 3.7 Sonnet
+ *  Usage: [Prompt:]
+ *      Complete the file UserRegistrationRequest based on given references.
+ *      [dbupdate-032-0.sql] [User.java]
+ */
+
 package com.sismics.docs.core.model.jpa;
 
 import com.google.common.base.MoreObjects;

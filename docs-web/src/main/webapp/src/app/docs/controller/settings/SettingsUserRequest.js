@@ -1,3 +1,11 @@
+/** AI-genereated-content
+ *  Tool: Github Copilot
+ *  Version: Claude 3.7 Sonnet
+ *  Usage: [Prompt:]
+ *    Create necessary controllers and views for the admin to view and approve / decline new user registration requests.
+ *    [zh_CN.json] [en.json] [UserRegistrationRequestResource.java] [Login.js] [settings.user.html]
+ */
+
 'use strict';
 
 /**

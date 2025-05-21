@@ -1,3 +1,13 @@
+/** AI-genereated-content
+ *  Tool: Github Copilot
+ *  Version: Claude 3.7 Sonnet
+ *  Usage: [Prompt:]
+ *      Create requestRegistration, getRequests, approve, reject api endpoints
+ *      for user registration requests based on provided context.
+ *      [dbupdate-032-0.sql] [UserRegistrationRequest.java] [UserRegistrationRequestDao.java]
+ *      [UserRegistrationRequestDto.java] [UserResource.java]
+ */
+
 package com.sismics.docs.core.event;
 
 import com.sismics.docs.core.model.jpa.UserRegistrationRequest;

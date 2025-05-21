@@ -1,3 +1,13 @@
+/** AI-genereated-content
+ *  Tool: Github Copilot
+ *  Version: Claude 3.7 Sonnet
+ *  Usage: [Prompt:]
+ *      Complete the file UserRegistrationRequest based on given references.
+ *      [dbupdate-032-0.sql] [User.java]
+ *      Now modify create the Dao and Dto accordingly.
+ *      [UserDao.java]
+ */
+
 package com.sismics.docs.core.dao.dto;
 
 /**

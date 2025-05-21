@@ -1,3 +1,9 @@
+-- AI-generated-content
+-- Tool: Github Copilot
+-- Version: Claude 3.7 Sonnet
+-- Usage: I asked the AI to generate a SQL script to update the database schema
+--      for a user registration feature and chat messaging system.
+
 create cached table T_USER_REGISTRATION_REQUEST (
     URR_ID_C varchar(36) not null,
     URR_NAME_C varchar(100),
