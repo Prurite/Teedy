@@ -1,3 +1,14 @@
+/** AI-genereated-content
+ *  Tool: Github Copilot
+ *  Version: Claude 3.7 Sonnet
+ *  Usage: [Prompt:]
+ *      With reference to the given context, implement necessary API for sending messages,
+ *      listing conversations for a user, retrieving messages between 2 users, mark message as read,
+ *      and other necessary things if needed, for a simple one-to-one chat system between users in the same group.
+ *      [ChatMessage.java] [ChatMessageDao.java] [ChatMessageDto.java] [ChatMessageCriteria.java]
+ *      [UserRegistrationRequestResource.java]
+ */
+
 package com.sismics.docs.rest.resource;
 
 import com.sismics.docs.core.constant.PermType;

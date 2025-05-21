@@ -1,3 +1,12 @@
+/** AI-genereated-content
+ *  Tool: Github Copilot
+ *  Version: Claude 3.7 Sonnet
+ *  Usage: [Prompt:]
+ *      With reference to given context, implement the model, dao and dto for chat messages,
+ *      and update the sql file to create necessary table for it.
+ *      [UserDao.java] [UserDto.java] [User.java] [dbupdate-032-0.sql]
+ */
+
 package com.sismics.docs.core.dao.criteria;
 
 /**

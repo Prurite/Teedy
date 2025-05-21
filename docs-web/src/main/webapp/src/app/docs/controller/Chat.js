@@ -1,3 +1,15 @@
+/** AI-genereated-content
+ *  Tool: Github Copilot
+ *  Version: Claude 3.7 Sonnet
+ *  Usage: [Prompt:]
+ *  I want to implement a new feature of real-time chat in the webapp, e.g., one-to-one chat with other online users from the same group.
+ *  In the backend, the messages can be simple saved as sender, receiver, text, and other related necessary things.
+ *  In the frontend, their is a floating chat button in the lower right corner, and when clicked, it opens a simple modal.
+ *  The left is a list of past conversations, with a input bar to create a new conversation to some user; the right is chat history & text field.
+ *  With reference to the attached context, implement the frontend part of the chat function.
+ *  [ChatResource.java] [en.json] [index.html] [main.html] [document.html] [app.js] [Main.js] [Document.js]
+ */
+
 'use strict';
 
 /**
