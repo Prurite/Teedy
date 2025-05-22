@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Jenkins credentials ID for DockerHub
-        DOCKER_HUB_CREDENTIALS = credentials('dockerhub_credentials')
+        DOCKER_HUB_CREDENTIALS = '642daa11-5b6a-453e-82d2-83e0c46e9be4'
         
         // DockerHub repository name
         DOCKER_IMAGE = 'prurite/teedy-app'
@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     // Push image to Docker Hub
-                    docker.withRegistry('https://registry.hub.docker.com', 'DOCKER_HUB_CREDENTIALS') {
+                    docker.withRegistry('https://registry.hub.docker.com', "${env.DOCKER_HUB_CREDENTIALS}") {
                         docker.image("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}").push()
                         docker.image("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}").push('latest')
                     }
