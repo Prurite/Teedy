@@ -40,6 +40,7 @@ pipeline {
             }
         }
         */
+        /*
         stage('Start Minikube and Set up kubectl') {
             steps {
                 script {
@@ -51,6 +52,7 @@ pipeline {
                 }
             }
         }
+        */
         stage('Deploy to Minikube') {
             steps {
                 script {
