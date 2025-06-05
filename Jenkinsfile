@@ -22,45 +22,32 @@ pipeline {
         stage('Building image') {
             steps {
                 script {
-                    // Build Docker image
-                    docker.build("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}")
+                    // Configure Docker to use Minikube's Docker daemon
+                    sh 'eval $(minikube docker-env)'
+                    
+                    // Build Docker image directly in Minikube's Docker daemon
+                    sh "docker build -t ${env.DOCKER_IMAGE}:${env.DOCKER_TAG} ."
                 }
             }
         }
-        /*
-        stage('Upload image') {
-            steps {
-                script {
-                    // Push image to Docker Hub
-                    docker.withRegistry('https://registry.hub.docker.com', "${env.DOCKER_HUB_CREDENTIALS}") {
-                        docker.image("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}").push()
-                        docker.image("${env.DOCKER_IMAGE}:${env.DOCKER_TAG}").push('latest')
-                    }
-                }
-            }
-        }
-        */
-        /*
-        stage('Start Minikube and Set up kubectl') {
-            steps {
-                script {
-                    // Start Minikube if not already running
-                    sh 'minikube start'
-
-                    // Set the kubectl context to use Minikube
-                    sh 'kubectl config use-context minikube'
-                }
-            }
-        }
-        */
         stage('Deploy to Minikube') {
             steps {
                 script {
-                    // Create a Kubernetes deployment using the Docker image
-                    sh "kubectl create deployment teedy-app --image=${env.DOCKER_IMAGE}:${env.DOCKER_TAG} || kubectl set image deployment/teedy-app teedy-app=${env.DOCKER_IMAGE}:${env.DOCKER_TAG}"
+                    // Create deployment with imagePullPolicy: Never to use local image
+                    sh """
+                        kubectl create deployment teedy-app --image=${env.DOCKER_IMAGE}:${env.DOCKER_TAG} --dry-run=client -o yaml | \\
+                        sed 's/imagePullPolicy: Always/imagePullPolicy: Never/' | \\
+                        kubectl apply -f -
+                    """
+                    
+                    // Alternative: Update existing deployment if it exists
+                    sh "kubectl set image deployment/teedy-app teedy-app=${env.DOCKER_IMAGE}:${env.DOCKER_TAG} || true"
+                    
+                    // Set imagePullPolicy to Never for existing deployment
+                    sh "kubectl patch deployment teedy-app -p '{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"teedy-app\",\"imagePullPolicy\":\"Never\"}]}}}}'"
 
-                    // Expose the deployment as a service
-                    sh 'kubectl expose deployment teedy-app --type=NodePort --name=teedy-service --port=8081 --target-port=8080'
+                    // Expose the deployment as a service (only if it doesn't exist)
+                    sh 'kubectl expose deployment teedy-app --type=NodePort --name=teedy-service --port=8081 --target-port=8080 || true'
 
                     // Get Minikube service URL
                     def serviceURL = sh(script: 'minikube service teedy-service --url', returnStdout: true).trim()
